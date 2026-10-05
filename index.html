@@ -28,7 +28,7 @@
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
-      padding-bottom: 60px;
+      padding-bottom: 80px;
     }
 
     header {
@@ -38,7 +38,7 @@
     }
 
     .header-container {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
@@ -49,10 +49,9 @@
       margin-bottom: 20px;
     }
 
-    .user-info h2 { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+    .user-info h2 { font-size: 0.95rem; color: var(--text-muted); font-weight: 400; }
     .user-info h1 { font-size: 1.4rem; font-weight: 700; color: #fff; }
 
-    .nav-btns { display: flex; gap: 8px; }
     .config-btn {
       background: transparent;
       border: 1px solid var(--card-border);
@@ -102,26 +101,22 @@
     .btn-secondary { background: rgba(255, 255, 255, 0.1); color: var(--text-main); }
 
     main {
-      max-width: 900px;
-      margin: 20px auto;
+      max-width: 960px;
+      margin: 24px auto;
       padding: 0 16px;
     }
 
-    /* ショー周知バナー */
-    .show-banner {
-      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80');
-      background-size: cover;
-      background-position: center;
-      border-radius: 12px;
-      padding: 20px;
-      border: 1px solid var(--accent-gold);
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
-      margin-bottom: 24px;
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 32px 0 16px;
+      border-left: 4px solid var(--accent-gold);
+      padding-left: 12px;
     }
-    .show-banner h3 { color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 6px; }
-    .show-banner p { font-size: 0.9rem; line-height: 1.5; }
+    .section-title { font-size: 1.25rem; font-weight: 700; color: #fff; }
 
-    /* コントロールバー（検索・カテゴリ） */
+    /* コントロールバー (検索 & タブ) */
     .controls-bar {
       display: flex;
       flex-wrap: wrap;
@@ -131,12 +126,7 @@
       margin-bottom: 16px;
     }
 
-    .search-box {
-      flex: 1;
-      min-width: 200px;
-      position: relative;
-    }
-
+    .search-box { flex: 1; min-width: 200px; }
     .search-box input {
       width: 100%;
       padding: 10px 14px;
@@ -147,13 +137,7 @@
       font-size: 0.9rem;
     }
 
-    .category-tabs {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
+    .category-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
     .tab {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -166,6 +150,7 @@
     }
     .tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
+    /* グリッドカード */
     .contents-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -184,20 +169,51 @@
     }
     .card:hover { transform: translateY(-3px); border-color: var(--primary); }
 
-    .card-img { height: 130px; background-size: cover; background-position: center; }
+    .card-img { height: 140px; background-size: cover; background-position: center; }
     .card-body { padding: 14px; display: flex; flex-direction: column; flex: 1; }
     .card-date { font-size: 0.75rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 4px; }
     .card-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
     .card-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .card-footer { display: flex; justify-content: space-between; align-items: center; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
     .card-price { font-weight: 700; color: var(--accent-gold); font-size: 1rem; }
 
-    /* モーダル汎用 */
+    /* ショースケジュール エリア */
+    .show-schedule-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .show-card {
+      background: linear-gradient(145deg, #181c2a 0%, #0f121d 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      position: relative;
+    }
+
+    .show-card-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .show-region { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .show-slot-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+    .show-slot { font-size: 0.85rem; color: var(--text-muted); background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; }
+
+    /* モーダル */
     .modal {
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       justify-content: center;
       align-items: center;
       padding: 16px;
@@ -216,7 +232,7 @@
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 
     .modal-img {
-      width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 16px;
+      width: 100%; height: 200px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 16px;
     }
     .modal-date { font-size: 0.85rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 6px; }
     .modal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
@@ -225,7 +241,7 @@
       background: rgba(255,255,255,0.05); padding: 12px 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
     }
 
-    /* 管理者フォーム */
+    /* フォーム要素 */
     .form-group { margin-bottom: 14px; }
     .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
     .form-group input, .form-group textarea, .form-group select {
@@ -247,9 +263,7 @@
           <h2>GIFT Community Member</h2>
           <h1 id="user-name">ゲスト ユーザー 様</h1>
         </div>
-        <div class="nav-btns">
-          <button class="config-btn admin" onclick="openAdminModal()">⚙️ 管理者画面</button>
-        </div>
+        <button class="config-btn admin" onclick="openAdminModal()">⚙️ 管理者画面</button>
       </div>
 
       <div class="status-card">
@@ -269,35 +283,43 @@
   </header>
 
   <main>
-    <!-- マジックショー案内バナー -->
-    <div class="show-banner" id="show-banner-box">
-      <h3 id="show-banner-title">✨ GIFT 次回マジックショー開催情報</h3>
-      <p id="show-banner-desc">次回公演：2026年11月15日(日) 18:00〜 @都内劇場<br>お知り合いの同伴・ご招待大歓迎です！</p>
+    <!-- 1. 体験・コミュニティコンテンツ (画面上部) -->
+    <div class="section-header">
+      <h2 class="section-title">✨ 体験・コミュニティ企画</h2>
     </div>
 
-    <!-- コントロールバー (検索 & フィルター) -->
     <div class="controls-bar">
       <div class="category-tabs">
         <button class="tab active" onclick="filterCategory('all', this)">すべて</button>
-        <button class="tab" onclick="filterCategory('show', this)">マジック</button>
-        <button class="tab" onclick="filterCategory('cube', this)">キューブ</button>
-        <button class="tab" onclick="filterCategory('event', this)">交流</button>
-        <button class="tab" onclick="filterCategory('golf', this)">ゴルフ</button>
+        <button class="tab" onclick="filterCategory('cube', this)">キューブ体験</button>
+        <button class="tab" onclick="filterCategory('event', this)">交流・お出かけ</button>
+        <button class="tab" onclick="filterCategory('golf', this)">ゴルフ体験</button>
       </div>
       <div class="search-box">
         <input type="text" id="search-input" placeholder="🔍 キーワード検索..." oninput="handleSearch()">
       </div>
     </div>
 
-    <h2 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--text-muted);">📅 開催・提供スケジュール順一覧</h2>
     <div class="contents-grid" id="contents-grid"></div>
+
+    <!-- 2. ショースケジュール一覧 -->
+    <div class="section-header">
+      <h2 class="section-title">🎪 MAGIC LIVE SHOW "GIFT" 全国ツアー予定</h2>
+    </div>
+    <div class="show-schedule-container" id="show-schedule-grid"></div>
+
+    <!-- 3. グッズ・チケット (画面最下部) -->
+    <div class="section-header">
+      <h2 class="section-title">🛍️ 39 GIFT SHOP（グッズ・チケット）</h2>
+    </div>
+    <div class="contents-grid" id="goods-grid"></div>
   </main>
 
-  <!-- コンテンツ詳細モーダル -->
+  <!-- 詳細モーダル -->
   <div class="modal" id="detail-modal">
     <div class="modal-content">
       <div class="modal-header">
-        <span style="font-size:0.85rem; color:var(--text-muted);">コンテンツ詳細</span>
+        <span style="font-size:0.85rem; color:var(--text-muted);">詳細情報</span>
         <button class="config-btn" onclick="closeDetailModal()">✕</button>
       </div>
       <div id="modal-detail-body"></div>
@@ -323,33 +345,42 @@
         <button class="config-btn" onclick="closeAdminModal()">✕</button>
       </div>
       
-      <h4 style="margin-bottom:10px; color:var(--accent-gold);">1. 次回マジックショー情報の更新</h4>
+      <h4 style="margin-bottom:10px; color:var(--accent-gold);">1. 新規ショースケジュールの追加</h4>
       <div class="form-group">
-        <label>タイトル</label>
-        <input type="text" id="admin-show-title" value="✨ GIFT 次回マジックショー開催情報">
+        <label>エリア・都市名</label>
+        <input type="text" id="show-region" placeholder="例: 【 東京 】">
       </div>
       <div class="form-group">
-        <label>案内文</label>
-        <textarea id="admin-show-desc" rows="2">次回公演：2026年11月15日(日) 18:00〜 @都内劇場&#10;お知り合いの同伴・ご招待大歓迎です！</textarea>
-      </div>
-      <button class="btn btn-secondary" style="width:100%; margin-bottom:20px;" onclick="updateShowBanner()">ショー案内を更新</button>
-
-      <h4 style="margin-bottom:10px; color:var(--accent-gold);">2. 新規コンテンツの追加</h4>
-      <div class="form-group">
-        <label>タイトル</label>
-        <input type="text" id="new-title" placeholder="例: マー君企画 〇〇体験">
-      </div>
-      <div class="form-group">
-        <label>カテゴリ</label>
-        <select id="new-category">
-          <option value="show">マジック</option>
-          <option value="cube">キューブ</option>
-          <option value="event">交流・お出かけ</option>
-          <option value="golf">ゴルフ</option>
+        <label>ステータス</label>
+        <select id="show-status">
+          <option value="開催間近！！">開催間近！！</option>
+          <option value="通常受付中">通常受付中</option>
+          <option value="残席わずか">残席わずか</option>
         </select>
       </div>
       <div class="form-group">
-        <label>開催日 / 提供予定（スケジュール順用）</label>
+        <label>公演日時（改行で複数）</label>
+        <textarea id="show-slots" rows="3" placeholder="10月18日(日) 12:00〜&#10;10月18日(日) 17:00〜"></textarea>
+      </div>
+      <button class="btn btn-secondary" style="width:100%; margin-bottom:20px;" onclick="addShowSchedule()">ショースケジュールを追加</button>
+
+      <h4 style="margin-bottom:10px; color:var(--accent-gold);">2. 新規コンテンツ / グッズの追加</h4>
+      <div class="form-group">
+        <label>タイトル</label>
+        <input type="text" id="new-title" placeholder="例: GIFT Tシャツ">
+      </div>
+      <div class="form-group">
+        <label>種別・カテゴリ</label>
+        <select id="new-category">
+          <option value="event">交流・お出かけ（体験）</option>
+          <option value="cube">キューブアート（体験）</option>
+          <option value="golf">ゴルフ（体験）</option>
+          <option value="goods">グッズ・アイテム</option>
+          <option value="ticket">チケット</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>開催日 / 提供予定</label>
         <input type="date" id="new-date">
       </div>
       <div class="form-group">
@@ -357,14 +388,21 @@
         <input type="number" id="new-points" placeholder="3900">
       </div>
       <div class="form-group">
+        <label>オプション設定 (Tシャツサイズ等)</label>
+        <select id="new-has-size">
+          <option value="no">サイズ選択なし</option>
+          <option value="yes">サイズ選択あり (S/M/L/XL)</option>
+        </select>
+      </div>
+      <div class="form-group">
         <label>画像URL</label>
-        <input type="text" id="new-img" value="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400">
+        <input type="text" id="new-img" placeholder="https://...">
       </div>
       <div class="form-group">
         <label>詳細説明</label>
-        <textarea id="new-desc" rows="3" placeholder="コンテンツの詳細や注意事項などを入力"></textarea>
+        <textarea id="new-desc" rows="3" placeholder="詳細を入力"></textarea>
       </div>
-      <button class="btn btn-primary" style="width:100%;" onclick="addNewContent()">新規コンテンツを保存・追加</button>
+      <button class="btn btn-primary" style="width:100%;" onclick="addNewItem()">新規保存・追加</button>
     </div>
   </div>
 
@@ -380,28 +418,45 @@
       ]
     };
 
-    let contents = [
-      { id: 1, category: "show", date: "2026-10-10", title: "ショー後 インタビュー動画撮影", desc: "鑑賞後に感想等を撮影し、記念動画としてコンテンツ化します。\n【参加特典】後日編集済みの特別版動画をお送りします。", points: 1000, img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400" },
-      { id: 2, category: "cube", date: "2026-10-15", title: "ルービックキューブ 6面揃え方教室", desc: "リアル/オンライン対応。初心者から短時間で完成までレクチャー！\n手元が見えやすい専用Webカメラ配信で行います。", points: 2000, img: "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=400" },
-      { id: 3, category: "event", date: "2026-10-20", title: "マー君とお出かけ＆他コミュニティ参加", desc: "靖国神社の清掃活動など、他コミュニティ活動へみんなで参加（定員10〜15名）。\n【集合】午前10時 靖国神社鳥居前", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" },
-      { id: 4, category: "event", date: "2026-10-25", title: "メグちゃんの手料理 異業種交流ご飯会", desc: "メグちゃん特製料理を囲みつつ、みんなで自己紹介＆親睦会（実費別途）。\n【定員】8名様限定", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400" },
-      { id: 5, category: "golf", date: "2026-11-01", title: "オンライン スイングチェック", desc: "動画を送るだけでプロ視点のフォームアドバイスをお届けします。", points: 1500, img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400" },
-      { id: 6, category: "golf", date: "2026-11-10", title: "打ちっぱなし 練習場リアルレッスン", desc: "練習場での対面ワンポイントレッスン（目安1.5〜2ヶ月分ポイント）。\n【場所】都内近郊練習場（打席代別途）", points: 6000, img: "https://images.unsplash.com/photo-1592919505780-303950717480?w=400" }
+    // 体験コンテンツデータ
+    let experiences = [
+      { id: 101, category: "cube", date: "2026-10-15", title: "ルービックキューブ 6面揃え方体験会", desc: "手元の動きを直接見ながら完成までの達成感を一緒に楽しむリアルワークショップです。", points: 2000, img: "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=500" },
+      { id: 102, category: "cube", date: "2026-10-22", title: "巨大キューブアート 共同制作イベント", desc: "参加者みんなで数百個のルービックキューブを組み合わせて1つのドット絵アートを完成させます！", points: 3900, img: "https://images.unsplash.com/photo-1539628372073-0355568e063c?w=500" },
+      { id: 103, category: "event", date: "2026-10-18", title: "マー君とお出かけ＆他コミュニティ交流清掃", desc: "マー君と一緒に靖国神社清掃活動等へ参加し、多種多様な人々と交流するお出かけ企画（定員15名）。", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500" },
+      { id: 104, category: "event", date: "2026-10-25", title: "メグちゃんの手料理 異業種交流ご飯会", desc: "メグちゃん特製の手料理を囲み、アットホームな雰囲気で語り合う限定ご飯会（定員8名 / 実費別途）。", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500" },
+      { id: 105, category: "golf", date: "2026-11-01", title: "オンライン スイング撮影アドバイス", desc: "普段のゴルフスイング動画を送っていただき、ワンポイントの改善アドバイスをお返しする体験です。", points: 1500, img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=500" },
+      { id: 106, category: "golf", date: "2026-11-12", title: "ゴルフ練習場 リアル打ちっぱなし交流会", desc: "練習場で一緒にボールを打ちながらアドバイスを受けられる体験レッスン（打席代別途）。", points: 6000, img: "https://images.unsplash.com/photo-1592919505780-303950717480?w=500" }
+    ];
+
+    // ショースケジュール
+    let showSchedules = [
+      { id: 1, region: "【 東京 】", status: "開催間近！！", slots: ["10月18日(日) 12:00〜", "10月18日(日) 17:00〜", "12月5日(土) 12:00〜", "12月5日(土) 17:00〜"] },
+      { id: 2, region: "【 愛媛 】", status: "開催間近！！", slots: ["11月7日(土) 12:00〜", "11月7日(土) 17:00〜", "11月8日(日) 12:00〜", "11月8日(日) 17:00〜"] },
+      { id: 3, region: "【 大阪 】", status: "通常受付中", slots: ["11月14日(土) 12:00〜", "11月14日(土) 17:00〜", "11月15日(日) 12:00〜", "11月15日(日) 17:00〜"] },
+      { id: 4, region: "【 沖縄 】", status: "2027年開催", slots: ["1月16日(土) 12:00〜", "1月16日(土) 17:00〜", "1月17日(日) 12:00〜", "1月17日(日) 17:00〜"] },
+      { id: 5, region: "【 愛知 】", status: "2027年開催", slots: ["2月13日(土) 12:00〜", "2月13日(土) 17:00〜", "2月14日(日) 12:00〜", "2月14日(日) 17:00〜"] }
+    ];
+
+    // グッズ・チケットデータ
+    let goodsItems = [
+      { id: 201, category: "goods", date: "常時受付", title: "TEAM GIFTER Tシャツ", desc: "コミュニティ公式Tシャツ。サイズ展開：S・M・L・XL", points: 6000, hasSize: true, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" },
+      { id: 202, category: "ticket", date: "常時受付", title: "GIFTチケット 【1枚】", desc: "MAGIC LIVE SHOW GIFTの鑑賞招待チケットです。", points: 16500, hasSize: false, img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" }
     ];
 
     function renderUI() {
       document.getElementById('user-name').innerText = userState.name + " 様";
       document.getElementById('current-points').innerHTML = userState.points.toLocaleString() + '<span>pt</span>';
-      renderContents();
+      renderExperiences();
+      renderShowSchedules();
+      renderGoods();
       renderHistory();
     }
 
-    function renderContents() {
+    function renderExperiences() {
       const grid = document.getElementById('contents-grid');
       grid.innerHTML = '';
 
-      // スケジュール順（日付昇順）にソート
-      let filtered = contents.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+      let filtered = experiences.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
 
       filtered = filtered.filter(item => {
         const matchCat = (currentCategory === 'all' || item.category === currentCategory);
@@ -410,14 +465,14 @@
       });
 
       if (filtered.length === 0) {
-        grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px; color: var(--text-muted);">該当するコンテンツが見つかりません。</div>';
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 30px; color: var(--text-muted);">該当する体験企画はありません。</div>';
         return;
       }
 
       filtered.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.onclick = () => openDetailModal(item.id);
+        card.onclick = () => openDetailModal(item, 'exp');
         card.innerHTML = `
           <div class="card-img" style="background-image: url('${item.img}')"></div>
           <div class="card-body">
@@ -434,44 +489,105 @@
       });
     }
 
-    /* ポップアップ（詳細モーダル） */
-    function openDetailModal(id) {
-      const item = contents.find(c => c.id === id);
-      if (!item) return;
+    function renderShowSchedules() {
+      const container = document.getElementById('show-schedule-grid');
+      container.innerHTML = '';
 
+      showSchedules.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'show-card';
+        const slotsHtml = item.slots.map(s => `<div class="show-slot">🕒 ${s}</div>`).join('');
+        card.innerHTML = `
+          <div class="show-card-badge">${item.status}</div>
+          <div class="show-region">${item.region}</div>
+          <div class="show-slot-list">${slotsHtml}</div>
+          <button class="btn btn-secondary btn-sm" style="width:100%; font-size:0.8rem;" onclick="openTicketNotice('${item.region}')">チケットを申し込む</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderGoods() {
+      const grid = document.getElementById('goods-grid');
+      grid.innerHTML = '';
+
+      goodsItems.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.onclick = () => openDetailModal(item, 'goods');
+        card.innerHTML = `
+          <div class="card-img" style="background-image: url('${item.img}')"></div>
+          <div class="card-body">
+            <div class="card-title">${item.title}</div>
+            <div class="card-desc">${item.desc}</div>
+            <div class="card-footer">
+              <div class="card-price">${item.points.toLocaleString()} pt</div>
+              <button class="btn btn-primary btn-sm" style="padding:6px 12px; font-size:0.8rem; border-radius:6px;">詳細を見る</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    /* モーダル表示 */
+    function openDetailModal(item, type) {
       const body = document.getElementById('modal-detail-body');
+      
+      let optionHtml = '';
+      if (item.hasSize) {
+        optionHtml = `
+          <div class="form-group" style="margin-top:15px;">
+            <label>サイズを選択してください</label>
+            <select id="selected-size">
+              <option value="S">S サイズ</option>
+              <option value="M">M サイズ</option>
+              <option value="L">L サイズ</option>
+              <option value="XL">XL サイズ</option>
+            </select>
+          </div>
+        `;
+      }
+
       body.innerHTML = `
         <div class="modal-img" style="background-image: url('${item.img}')"></div>
-        <div class="modal-date">開催・提供予定: ${item.date || '随時受付'}</div>
+        <div class="modal-date">${item.date ? '開催日 / 受付: ' + item.date : ''}</div>
         <div class="modal-title">${item.title}</div>
         <div class="modal-desc">${item.desc}</div>
+        ${optionHtml}
         <div class="modal-price-box">
           <span style="color:var(--text-muted);">必要ポイント</span>
           <span style="font-size:1.4rem; font-weight:800; color:var(--accent-gold);">${item.points.toLocaleString()} pt</span>
         </div>
-        <button class="btn btn-primary" style="width:100%;" onclick="consumePoints('${item.title}', ${item.points})">このコンテンツに申し込む (${item.points.toLocaleString()} pt)</button>
+        <button class="btn btn-primary" style="width:100%;" onclick="consumePoints('${item.title}', ${item.points}, ${item.hasSize})">申込みを実行する (${item.points.toLocaleString()} pt)</button>
       `;
       document.getElementById('detail-modal').style.display = 'flex';
     }
 
-    function closeDetailModal() {
-      document.getElementById('detail-modal').style.display = 'none';
+    function closeDetailModal() { document.getElementById('detail-modal').style.display = 'none'; }
+    function openHistoryModal() { document.getElementById('history-modal').style.display = 'flex'; }
+    function closeHistoryModal() { document.getElementById('history-modal').style.display = 'none'; }
+    function openAdminModal() { document.getElementById('admin-modal').style.display = 'flex'; }
+    function closeAdminModal() { document.getElementById('admin-modal').style.display = 'none'; }
+
+    function openTicketNotice(region) {
+      alert(`${region} 公演のチケット申込みは、画面最下部の「GIFTチケット」からお手続きいただくか、運営事務局へお問い合わせください。`);
     }
 
-    /* 検索 & フィルター */
+    /* 検索 & カテゴリ */
     function filterCategory(cat, btn) {
       currentCategory = cat;
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
-      renderContents();
+      renderExperiences();
     }
 
     function handleSearch() {
       searchQuery = document.getElementById('search-input').value.trim();
-      renderContents();
+      renderExperiences();
     }
 
-    /* ポイント操作 */
+    /* ポイント処理 */
     function addPoints(amount) {
       userState.points += amount;
       userState.history.unshift({
@@ -483,16 +599,23 @@
       renderUI();
     }
 
-    function consumePoints(title, cost) {
+    function consumePoints(title, cost, hasSize) {
       if (userState.points < cost) {
-        alert("ポイントが不足しています。ポイントを追加購入してください。");
+        alert("ポイントが不足しています。追加購入してください。");
         return;
       }
-      if (confirm(`「${title}」を ${cost.toLocaleString()} pt で申し込みますか？`)) {
+
+      let extraDesc = "";
+      if (hasSize) {
+        const size = document.getElementById('selected-size').value;
+        extraDesc = ` (${size}サイズ)`;
+      }
+
+      if (confirm(`「${title}${extraDesc}」を ${cost.toLocaleString()} pt で申し込みますか？`)) {
         userState.points -= cost;
         userState.history.unshift({
           date: new Date().toLocaleDateString('ja-JP'),
-          desc: `「${title}」へ利用`,
+          desc: `「${title}${extraDesc}」へ利用`,
           amount: -cost
         });
         alert("申込みが完了しました！");
@@ -521,26 +644,30 @@
       });
     }
 
-    /* 管理者機能 */
-    function openAdminModal() { document.getElementById('admin-modal').style.display = 'flex'; }
-    function closeAdminModal() { document.getElementById('admin-modal').style.display = 'none'; }
-    function openHistoryModal() { document.getElementById('history-modal').style.display = 'flex'; }
-    function closeHistoryModal() { document.getElementById('history-modal').style.display = 'none'; }
+    /* 管理者追加アクション */
+    function addShowSchedule() {
+      const region = document.getElementById('show-region').value;
+      const status = document.getElementById('show-status').value;
+      const slotsText = document.getElementById('show-slots').value;
 
-    function updateShowBanner() {
-      const title = document.getElementById('admin-show-title').value;
-      const desc = document.getElementById('admin-show-desc').value;
-      document.getElementById('show-banner-title').innerText = title;
-      document.getElementById('show-banner-desc').innerHTML = desc.replace(/\n/g, '<br>');
-      alert("マジックショー案内文を更新しました！");
+      if (!region || !slotsText) {
+        alert("エリア名と公演日時を入力してください。");
+        return;
+      }
+
+      const slots = slotsText.split('\n').filter(s => s.trim() !== '');
+      showSchedules.push({ id: Date.now(), region, status, slots });
+      alert("新しいショースケジュールを追加しました！");
       closeAdminModal();
+      renderUI();
     }
 
-    function addNewContent() {
+    function addNewItem() {
       const title = document.getElementById('new-title').value;
       const category = document.getElementById('new-category').value;
       const date = document.getElementById('new-date').value;
       const points = parseInt(document.getElementById('new-points').value);
+      const hasSize = (document.getElementById('new-has-size').value === 'yes');
       const img = document.getElementById('new-img').value;
       const desc = document.getElementById('new-desc').value;
 
@@ -549,23 +676,29 @@
         return;
       }
 
-      const newObj = {
+      const itemObj = {
         id: Date.now(),
         category,
-        date: date || "随時受付",
+        date: date || "常時受付",
         title,
         desc: desc || "詳細情報は準備中です。",
         points,
-        img: img || "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400"
+        hasSize,
+        img: img || "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500"
       };
 
-      contents.unshift(newObj);
-      alert("新しいコンテンツを追加しました！");
+      if (category === 'goods' || category === 'ticket') {
+        goodsItems.unshift(itemObj);
+      } else {
+        experiences.unshift(itemObj);
+      }
+
+      alert("アイテムを追加しました！");
       closeAdminModal();
       renderUI();
     }
 
-    // 初期実行
+    // 初期化実行
     renderUI();
   </script>
 </body>
