@@ -31,16 +31,14 @@
       padding-bottom: 60px;
     }
 
-    /* ヘッダー・ステータスエリア */
     header {
       background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
       padding: 24px 20px;
       border-bottom: 1px solid var(--card-border);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
     .header-container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -51,18 +49,10 @@
       margin-bottom: 20px;
     }
 
-    .user-info h2 {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
+    .user-info h2 { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+    .user-info h1 { font-size: 1.4rem; font-weight: 700; color: #fff; }
 
-    .user-info h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
+    .nav-btns { display: flex; gap: 8px; }
     .config-btn {
       background: transparent;
       border: 1px solid var(--card-border);
@@ -72,6 +62,7 @@
       cursor: pointer;
       font-size: 0.8rem;
     }
+    .config-btn.admin { border-color: var(--accent-gold); color: var(--accent-gold); }
 
     .status-card {
       background: rgba(255, 255, 255, 0.05);
@@ -90,34 +81,12 @@
       align-items: flex-end;
     }
 
-    .point-label {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
+    .point-label { font-size: 0.85rem; color: var(--text-muted); }
+    .point-value { font-size: 2.6rem; font-weight: 800; color: var(--accent-gold); line-height: 1; }
+    .point-value span { font-size: 1.1rem; color: var(--text-main); margin-left: 4px; }
+    .point-subinfo { font-size: 0.85rem; color: var(--success); }
 
-    .point-value {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: var(--accent-gold);
-      line-height: 1;
-    }
-
-    .point-value span {
-      font-size: 1.2rem;
-      color: var(--text-main);
-      margin-left: 4px;
-    }
-
-    .point-subinfo {
-      font-size: 0.85rem;
-      color: var(--success);
-    }
-
-    .action-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
+    .action-buttons { display: flex; gap: 10px; }
     .btn {
       flex: 1;
       padding: 12px;
@@ -128,91 +97,78 @@
       transition: all 0.2s;
       text-align: center;
     }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-secondary { background: rgba(255, 255, 255, 0.1); color: var(--text-main); }
 
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-hover);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text-main);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    /* メインコンテンツ */
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: 20px auto;
       padding: 0 16px;
     }
 
-    .section-title {
-      font-size: 1.2rem;
-      margin: 24px 0 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
     /* ショー周知バナー */
     .show-banner {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80');
+      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80');
       background-size: cover;
       background-position: center;
       border-radius: 12px;
       padding: 20px;
       border: 1px solid var(--accent-gold);
       box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+      margin-bottom: 24px;
+    }
+    .show-banner h3 { color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 6px; }
+    .show-banner p { font-size: 0.9rem; line-height: 1.5; }
+
+    /* コントロールバー（検索・カテゴリ） */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
     }
 
-    .show-banner h3 {
-      color: var(--accent-gold);
-      font-size: 1.1rem;
-      margin-bottom: 6px;
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
     }
 
-    .show-banner p {
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: #fff;
       font-size: 0.9rem;
-      margin-bottom: 12px;
     }
 
-    /* コンテンツグリッド */
     .category-tabs {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 16px;
+      padding-bottom: 4px;
     }
 
     .tab {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       color: var(--text-muted);
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 20px;
       font-size: 0.85rem;
       white-space: nowrap;
       cursor: pointer;
     }
-
-    .tab.active {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
+    .tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
     .contents-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 16px;
     }
 
@@ -223,54 +179,20 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
     }
+    .card:hover { transform: translateY(-3px); border-color: var(--primary); }
 
-    .card-img {
-      height: 120px;
-      background-size: cover;
-      background-position: center;
-    }
+    .card-img { height: 130px; background-size: cover; background-position: center; }
+    .card-body { padding: 14px; display: flex; flex-direction: column; flex: 1; }
+    .card-date { font-size: 0.75rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 4px; }
+    .card-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+    .card-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; }
+    .card-price { font-weight: 700; color: var(--accent-gold); font-size: 1rem; }
 
-    .card-body {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
-    .card-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .card-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      flex: 1;
-    }
-
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: auto;
-    }
-
-    .card-price {
-      font-weight: 700;
-      color: var(--accent-gold);
-      font-size: 1rem;
-    }
-
-    .btn-sm {
-      padding: 6px 12px;
-      font-size: 0.8rem;
-      border-radius: 6px;
-    }
-
-    /* 履歴モーダル */
+    /* モーダル汎用 */
     .modal {
       display: none;
       position: fixed;
@@ -281,40 +203,37 @@
       padding: 16px;
       z-index: 1000;
     }
-
     .modal-content {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      max-width: 500px;
+      max-width: 520px;
       width: 100%;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
+      max-height: 85vh;
+      overflow-y: auto;
       padding: 20px;
     }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
+    .modal-img {
+      width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 16px;
+    }
+    .modal-date { font-size: 0.85rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 6px; }
+    .modal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+    .modal-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; white-space: pre-wrap; }
+    .modal-price-box {
+      background: rgba(255,255,255,0.05); padding: 12px 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
     }
 
-    .history-list {
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    /* 管理者フォーム */
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 10px; background: #0d0f17; border: 1px solid var(--card-border); border-radius: 6px; color: #fff; font-size: 0.9rem;
     }
 
-    .history-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px;
-      border-bottom: 1px solid var(--card-border);
-    }
-
+    .history-list { display: flex; flex-direction: column; gap: 10px; }
+    .history-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid var(--card-border); }
     .history-amount.plus { color: var(--success); }
     .history-amount.minus { color: var(--danger); }
   </style>
@@ -328,7 +247,9 @@
           <h2>GIFT Community Member</h2>
           <h1 id="user-name">ゲスト ユーザー 様</h1>
         </div>
-        <button class="config-btn" onclick="openConfigModal()">⚙️ 設定</button>
+        <div class="nav-btns">
+          <button class="config-btn admin" onclick="openAdminModal()">⚙️ 管理者画面</button>
+        </div>
       </div>
 
       <div class="status-card">
@@ -349,26 +270,39 @@
 
   <main>
     <!-- マジックショー案内バナー -->
-    <div class="show-banner">
-      <h3>✨ GIFT 次回マジックショー開催情報</h3>
-      <p>次回公演：2026年11月15日(日) 18:00〜 @都内劇場<br>お知り合いの同伴・ご招待大歓迎です！</p>
+    <div class="show-banner" id="show-banner-box">
+      <h3 id="show-banner-title">✨ GIFT 次回マジックショー開催情報</h3>
+      <p id="show-banner-desc">次回公演：2026年11月15日(日) 18:00〜 @都内劇場<br>お知り合いの同伴・ご招待大歓迎です！</p>
     </div>
 
-    <!-- コンテンツエリア -->
-    <h2 class="section-title">🎁 ポイント対象コンテンツ</h2>
-    
-    <div class="category-tabs">
-      <button class="tab active" onclick="filterCategory('all')">すべて</button>
-      <button class="tab" onclick="filterCategory('show')">マジックショー</button>
-      <button class="tab" onclick="filterCategory('cube')">ルービックキューブ</button>
-      <button class="tab" onclick="filterCategory('event')">交流・お出かけ</button>
-      <button class="tab" onclick="filterCategory('golf')">ゴルフ</button>
+    <!-- コントロールバー (検索 & フィルター) -->
+    <div class="controls-bar">
+      <div class="category-tabs">
+        <button class="tab active" onclick="filterCategory('all', this)">すべて</button>
+        <button class="tab" onclick="filterCategory('show', this)">マジック</button>
+        <button class="tab" onclick="filterCategory('cube', this)">キューブ</button>
+        <button class="tab" onclick="filterCategory('event', this)">交流</button>
+        <button class="tab" onclick="filterCategory('golf', this)">ゴルフ</button>
+      </div>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="🔍 キーワード検索..." oninput="handleSearch()">
+      </div>
     </div>
 
-    <div class="contents-grid" id="contents-grid">
-      <!-- コンテンツカードがJavaScriptで動的生成されます -->
-    </div>
+    <h2 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--text-muted);">📅 開催・提供スケジュール順一覧</h2>
+    <div class="contents-grid" id="contents-grid"></div>
   </main>
+
+  <!-- コンテンツ詳細モーダル -->
+  <div class="modal" id="detail-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span style="font-size:0.85rem; color:var(--text-muted);">コンテンツ詳細</span>
+        <button class="config-btn" onclick="closeDetailModal()">✕</button>
+      </div>
+      <div id="modal-detail-body"></div>
+    </div>
+  </div>
 
   <!-- 履歴モーダル -->
   <div class="modal" id="history-modal">
@@ -377,14 +311,67 @@
         <h3>ポイント利用・付与履歴</h3>
         <button class="config-btn" onclick="closeHistoryModal()">✕</button>
       </div>
-      <div class="history-list" id="history-list">
-        <!-- 履歴データ -->
-      </div>
+      <div class="history-list" id="history-list"></div>
     </div>
   </div>
 
-  <script type="module">
-    // --- 初期デモデータ ---
+  <!-- 管理者モーダル -->
+  <div class="modal" id="admin-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>⚙️ 管理者パネル</h3>
+        <button class="config-btn" onclick="closeAdminModal()">✕</button>
+      </div>
+      
+      <h4 style="margin-bottom:10px; color:var(--accent-gold);">1. 次回マジックショー情報の更新</h4>
+      <div class="form-group">
+        <label>タイトル</label>
+        <input type="text" id="admin-show-title" value="✨ GIFT 次回マジックショー開催情報">
+      </div>
+      <div class="form-group">
+        <label>案内文</label>
+        <textarea id="admin-show-desc" rows="2">次回公演：2026年11月15日(日) 18:00〜 @都内劇場&#10;お知り合いの同伴・ご招待大歓迎です！</textarea>
+      </div>
+      <button class="btn btn-secondary" style="width:100%; margin-bottom:20px;" onclick="updateShowBanner()">ショー案内を更新</button>
+
+      <h4 style="margin-bottom:10px; color:var(--accent-gold);">2. 新規コンテンツの追加</h4>
+      <div class="form-group">
+        <label>タイトル</label>
+        <input type="text" id="new-title" placeholder="例: マー君企画 〇〇体験">
+      </div>
+      <div class="form-group">
+        <label>カテゴリ</label>
+        <select id="new-category">
+          <option value="show">マジック</option>
+          <option value="cube">キューブ</option>
+          <option value="event">交流・お出かけ</option>
+          <option value="golf">ゴルフ</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>開催日 / 提供予定（スケジュール順用）</label>
+        <input type="date" id="new-date">
+      </div>
+      <div class="form-group">
+        <label>必要ポイント</label>
+        <input type="number" id="new-points" placeholder="3900">
+      </div>
+      <div class="form-group">
+        <label>画像URL</label>
+        <input type="text" id="new-img" value="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400">
+      </div>
+      <div class="form-group">
+        <label>詳細説明</label>
+        <textarea id="new-desc" rows="3" placeholder="コンテンツの詳細や注意事項などを入力"></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:100%;" onclick="addNewContent()">新規コンテンツを保存・追加</button>
+    </div>
+  </div>
+
+  <script>
+    let currentCategory = 'all';
+    let searchQuery = '';
+
     let userState = {
       name: "マジック太郎",
       points: 3900,
@@ -393,48 +380,125 @@
       ]
     };
 
-    const contents = [
-      { id: 1, category: "show", title: "ショー後 インタビュー動画撮影", desc: "鑑賞後に感想等を撮影し、記念動画としてコンテンツ化します。", points: 1000, img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400" },
-      { id: 2, category: "cube", title: "ルービックキューブ 6面揃え方教室", desc: "リアル/オンライン対応。初心者から短時間で完成までレクチャー！", points: 2000, img: "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=400" },
-      { id: 3, category: "cube", title: "キューブアート作成 ワークショップ", desc: "多数のキューブを使って大型アートを作成する体験イベントです。", points: 3900, img: "https://images.unsplash.com/photo-1539628372073-0355568e063c?w=400" },
-      { id: 4, category: "event", title: "マー君とお出かけ＆他コミュニティ参加", desc: "靖国神社の清掃活動など、他コミュニティ活動へみんなで参加（定員10〜15名）。", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" },
-      { id: 5, category: "event", title: "メグちゃんの手料理 異業種交流ご飯会", desc: "メグちゃん特製料理を囲みつつ、みんなで自己紹介＆親睦会（実費別途）。", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400" },
-      { id: 6, category: "golf", title: "オンライン スイングチェック", desc: "動画を送るだけでプロ視点のフォームアドバイスをお届けします。", points: 1500, img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400" },
-      { id: 7, category: "golf", title: "100切り達成のための座学講座", desc: "コースマネジメントやメンタル面を中心とした座学・座談会レッスン。", points: 3000, img: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400" },
-      { id: 8, category: "golf", title: "打ちっぱなし 練習場リアルレッスン", desc: "練習場での対面ワンポイントレッスン（目安1.5〜2ヶ月分ポイント）。", points: 6000, img: "https://images.unsplash.com/photo-1592919505780-303950717480?w=400" },
-      { id: 9, category: "golf", title: "リアル ラウンドレッスン", desc: "コース同伴レッスン（3〜4ヶ月分ポイント想定＋各自プレー代等別途）。", points: 12000, img: "https://images.unsplash.com/photo-1593111774601-dfbce7de1a5c?w=400" }
+    let contents = [
+      { id: 1, category: "show", date: "2026-10-10", title: "ショー後 インタビュー動画撮影", desc: "鑑賞後に感想等を撮影し、記念動画としてコンテンツ化します。\n【参加特典】後日編集済みの特別版動画をお送りします。", points: 1000, img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400" },
+      { id: 2, category: "cube", date: "2026-10-15", title: "ルービックキューブ 6面揃え方教室", desc: "リアル/オンライン対応。初心者から短時間で完成までレクチャー！\n手元が見えやすい専用Webカメラ配信で行います。", points: 2000, img: "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=400" },
+      { id: 3, category: "event", date: "2026-10-20", title: "マー君とお出かけ＆他コミュニティ参加", desc: "靖国神社の清掃活動など、他コミュニティ活動へみんなで参加（定員10〜15名）。\n【集合】午前10時 靖国神社鳥居前", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" },
+      { id: 4, category: "event", date: "2026-10-25", title: "メグちゃんの手料理 異業種交流ご飯会", desc: "メグちゃん特製料理を囲みつつ、みんなで自己紹介＆親睦会（実費別途）。\n【定員】8名様限定", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400" },
+      { id: 5, category: "golf", date: "2026-11-01", title: "オンライン スイングチェック", desc: "動画を送るだけでプロ視点のフォームアドバイスをお届けします。", points: 1500, img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400" },
+      { id: 6, category: "golf", date: "2026-11-10", title: "打ちっぱなし 練習場リアルレッスン", desc: "練習場での対面ワンポイントレッスン（目安1.5〜2ヶ月分ポイント）。\n【場所】都内近郊練習場（打席代別途）", points: 6000, img: "https://images.unsplash.com/photo-1592919505780-303950717480?w=400" }
     ];
 
-    // --- 画面描画ロジック ---
     function renderUI() {
       document.getElementById('user-name').innerText = userState.name + " 様";
       document.getElementById('current-points').innerHTML = userState.points.toLocaleString() + '<span>pt</span>';
-      renderContents('all');
+      renderContents();
       renderHistory();
     }
 
-    function renderContents(filter) {
+    function renderContents() {
       const grid = document.getElementById('contents-grid');
       grid.innerHTML = '';
 
-      contents.forEach(item => {
-        if (filter !== 'all' && item.category !== filter) return;
+      // スケジュール順（日付昇順）にソート
+      let filtered = contents.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
 
+      filtered = filtered.filter(item => {
+        const matchCat = (currentCategory === 'all' || item.category === currentCategory);
+        const matchSearch = item.title.includes(searchQuery) || item.desc.includes(searchQuery);
+        return matchCat && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px; color: var(--text-muted);">該当するコンテンツが見つかりません。</div>';
+        return;
+      }
+
+      filtered.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
+        card.onclick = () => openDetailModal(item.id);
         card.innerHTML = `
           <div class="card-img" style="background-image: url('${item.img}')"></div>
           <div class="card-body">
+            <div class="card-date">📅 ${item.date || '随時受付'}</div>
             <div class="card-title">${item.title}</div>
             <div class="card-desc">${item.desc}</div>
             <div class="card-footer">
               <div class="card-price">${item.points.toLocaleString()} pt</div>
-              <button class="btn btn-primary btn-sm" onclick="consumePoints('${item.title}', ${item.points})">申込む</button>
+              <button class="btn btn-primary btn-sm" style="padding:6px 12px; font-size:0.8rem; border-radius:6px;">詳細を見る</button>
             </div>
           </div>
         `;
         grid.appendChild(card);
       });
+    }
+
+    /* ポップアップ（詳細モーダル） */
+    function openDetailModal(id) {
+      const item = contents.find(c => c.id === id);
+      if (!item) return;
+
+      const body = document.getElementById('modal-detail-body');
+      body.innerHTML = `
+        <div class="modal-img" style="background-image: url('${item.img}')"></div>
+        <div class="modal-date">開催・提供予定: ${item.date || '随時受付'}</div>
+        <div class="modal-title">${item.title}</div>
+        <div class="modal-desc">${item.desc}</div>
+        <div class="modal-price-box">
+          <span style="color:var(--text-muted);">必要ポイント</span>
+          <span style="font-size:1.4rem; font-weight:800; color:var(--accent-gold);">${item.points.toLocaleString()} pt</span>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" onclick="consumePoints('${item.title}', ${item.points})">このコンテンツに申し込む (${item.points.toLocaleString()} pt)</button>
+      `;
+      document.getElementById('detail-modal').style.display = 'flex';
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detail-modal').style.display = 'none';
+    }
+
+    /* 検索 & フィルター */
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      renderContents();
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById('search-input').value.trim();
+      renderContents();
+    }
+
+    /* ポイント操作 */
+    function addPoints(amount) {
+      userState.points += amount;
+      userState.history.unshift({
+        date: new Date().toLocaleDateString('ja-JP'),
+        desc: "クレジットカード追加購入",
+        amount: +amount
+      });
+      alert(`${amount.toLocaleString()} pt を追加購入しました！`);
+      renderUI();
+    }
+
+    function consumePoints(title, cost) {
+      if (userState.points < cost) {
+        alert("ポイントが不足しています。ポイントを追加購入してください。");
+        return;
+      }
+      if (confirm(`「${title}」を ${cost.toLocaleString()} pt で申し込みますか？`)) {
+        userState.points -= cost;
+        userState.history.unshift({
+          date: new Date().toLocaleDateString('ja-JP'),
+          desc: `「${title}」へ利用`,
+          amount: -cost
+        });
+        alert("申込みが完了しました！");
+        closeDetailModal();
+        renderUI();
+      }
     }
 
     function renderHistory() {
@@ -457,46 +521,51 @@
       });
     }
 
-    // --- ポイント操作アクション ---
-    window.addPoints = function(amount) {
-      userState.points += amount;
-      userState.history.unshift({
-        date: new Date().toLocaleDateString('ja-JP'),
-        desc: "クレジットカード追加購入",
-        amount: +amount
-      });
-      alert(`${amount.toLocaleString()} pt を追加購入・反映しました！`);
-      renderUI();
-    };
+    /* 管理者機能 */
+    function openAdminModal() { document.getElementById('admin-modal').style.display = 'flex'; }
+    function closeAdminModal() { document.getElementById('admin-modal').style.display = 'none'; }
+    function openHistoryModal() { document.getElementById('history-modal').style.display = 'flex'; }
+    function closeHistoryModal() { document.getElementById('history-modal').style.display = 'none'; }
 
-    window.consumePoints = function(title, cost) {
-      if (userState.points < cost) {
-        alert("ポイントが不足しています。ポイントを追加購入してください。");
+    function updateShowBanner() {
+      const title = document.getElementById('admin-show-title').value;
+      const desc = document.getElementById('admin-show-desc').value;
+      document.getElementById('show-banner-title').innerText = title;
+      document.getElementById('show-banner-desc').innerHTML = desc.replace(/\n/g, '<br>');
+      alert("マジックショー案内文を更新しました！");
+      closeAdminModal();
+    }
+
+    function addNewContent() {
+      const title = document.getElementById('new-title').value;
+      const category = document.getElementById('new-category').value;
+      const date = document.getElementById('new-date').value;
+      const points = parseInt(document.getElementById('new-points').value);
+      const img = document.getElementById('new-img').value;
+      const desc = document.getElementById('new-desc').value;
+
+      if (!title || isNaN(points)) {
+        alert("タイトルとポイント数は必須です。");
         return;
       }
-      if (confirm(`「${title}」を ${cost.toLocaleString()} pt で申し込みますか？`)) {
-        userState.points -= cost;
-        userState.history.unshift({
-          date: new Date().toLocaleDateString('ja-JP'),
-          desc: `「${title}」へ利用`,
-          amount: -cost
-        });
-        alert("申込みが完了しました！");
-        renderUI();
-      }
-    };
 
-    // --- タブ＆モーダル操作 ---
-    window.filterCategory = function(cat) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      event.target.classList.add('active');
-      renderContents(cat);
-    };
+      const newObj = {
+        id: Date.now(),
+        category,
+        date: date || "随時受付",
+        title,
+        desc: desc || "詳細情報は準備中です。",
+        points,
+        img: img || "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400"
+      };
 
-    window.openHistoryModal = () => document.getElementById('history-modal').style.display = 'flex';
-    window.closeHistoryModal = () => document.getElementById('history-modal').style.display = 'none';
+      contents.unshift(newObj);
+      alert("新しいコンテンツを追加しました！");
+      closeAdminModal();
+      renderUI();
+    }
 
-    // 初期化
+    // 初期実行
     renderUI();
   </script>
 </body>
