@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIFT Point Manager</title>
+  <style>
+    :root {
+      --bg-color: #0d0f17;
+      --card-bg: #181c2a;
+      --card-border: #283046;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --accent-gold: #f59e0b;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --danger: #ef4444;
+      --success: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding-bottom: 60px;
+    }
+
+    /* ヘッダー・ステータスエリア */
+    header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--card-border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .user-profile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .user-info h2 {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .user-info h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .config-btn {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .status-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .point-display {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .point-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .point-value {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+      line-height: 1;
+    }
+
+    .point-value span {
+      font-size: 1.2rem;
+      color: var(--text-main);
+      margin-left: 4px;
+    }
+
+    .point-subinfo {
+      font-size: 0.85rem;
+      color: var(--success);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* メインコンテンツ */
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ショー周知バナー */
+    .show-banner {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--accent-gold);
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+    }
+
+    .show-banner h3 {
+      color: var(--accent-gold);
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .show-banner p {
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    /* コンテンツグリッド */
+    .category-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tab {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .contents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-img {
+      height: 120px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .card-price {
+      font-weight: 700;
+      color: var(--accent-gold);
+      font-size: 1rem;
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      border-radius: 6px;
+    }
+
+    /* 履歴モーダル */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .history-list {
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .history-amount.plus { color: var(--success); }
+    .history-amount.minus { color: var(--danger); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="user-profile">
+        <div class="user-info">
+          <h2>GIFT Community Member</h2>
+          <h1 id="user-name">ゲスト ユーザー 様</h1>
+        </div>
+        <button class="config-btn" onclick="openConfigModal()">⚙️ 設定</button>
+      </div>
+
+      <div class="status-card">
+        <div class="point-display">
+          <div>
+            <div class="point-label">現在の所持ポイント</div>
+            <div class="point-value" id="current-points">3,900<span>pt</span></div>
+          </div>
+          <div class="point-subinfo">次回 11/1 自動付与 (+3,900pt)</div>
+        </div>
+        <div class="action-buttons">
+          <button class="btn btn-primary" onclick="addPoints(5000)">＋ 5,000pt 追加購入</button>
+          <button class="btn btn-secondary" onclick="openHistoryModal()">利用・付与履歴</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- マジックショー案内バナー -->
+    <div class="show-banner">
+      <h3>✨ GIFT 次回マジックショー開催情報</h3>
+      <p>次回公演：2026年11月15日(日) 18:00〜 @都内劇場<br>お知り合いの同伴・ご招待大歓迎です！</p>
+    </div>
+
+    <!-- コンテンツエリア -->
+    <h2 class="section-title">🎁 ポイント対象コンテンツ</h2>
+    
+    <div class="category-tabs">
+      <button class="tab active" onclick="filterCategory('all')">すべて</button>
+      <button class="tab" onclick="filterCategory('show')">マジックショー</button>
+      <button class="tab" onclick="filterCategory('cube')">ルービックキューブ</button>
+      <button class="tab" onclick="filterCategory('event')">交流・お出かけ</button>
+      <button class="tab" onclick="filterCategory('golf')">ゴルフ</button>
+    </div>
+
+    <div class="contents-grid" id="contents-grid">
+      <!-- コンテンツカードがJavaScriptで動的生成されます -->
+    </div>
+  </main>
+
+  <!-- 履歴モーダル -->
+  <div class="modal" id="history-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>ポイント利用・付与履歴</h3>
+        <button class="config-btn" onclick="closeHistoryModal()">✕</button>
+      </div>
+      <div class="history-list" id="history-list">
+        <!-- 履歴データ -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    // --- 初期デモデータ ---
+    let userState = {
+      name: "マジック太郎",
+      points: 3900,
+      history: [
+        { date: "2026/10/01", desc: "10月分月額自動付与", amount: +3900 }
+      ]
+    };
+
+    const contents = [
+      { id: 1, category: "show", title: "ショー後 インタビュー動画撮影", desc: "鑑賞後に感想等を撮影し、記念動画としてコンテンツ化します。", points: 1000, img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400" },
+      { id: 2, category: "cube", title: "ルービックキューブ 6面揃え方教室", desc: "リアル/オンライン対応。初心者から短時間で完成までレクチャー！", points: 2000, img: "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=400" },
+      { id: 3, category: "cube", title: "キューブアート作成 ワークショップ", desc: "多数のキューブを使って大型アートを作成する体験イベントです。", points: 3900, img: "https://images.unsplash.com/photo-1539628372073-0355568e063c?w=400" },
+      { id: 4, category: "event", title: "マー君とお出かけ＆他コミュニティ参加", desc: "靖国神社の清掃活動など、他コミュニティ活動へみんなで参加（定員10〜15名）。", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" },
+      { id: 5, category: "event", title: "メグちゃんの手料理 異業種交流ご飯会", desc: "メグちゃん特製料理を囲みつつ、みんなで自己紹介＆親睦会（実費別途）。", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400" },
+      { id: 6, category: "golf", title: "オンライン スイングチェック", desc: "動画を送るだけでプロ視点のフォームアドバイスをお届けします。", points: 1500, img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400" },
+      { id: 7, category: "golf", title: "100切り達成のための座学講座", desc: "コースマネジメントやメンタル面を中心とした座学・座談会レッスン。", points: 3000, img: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400" },
+      { id: 8, category: "golf", title: "打ちっぱなし 練習場リアルレッスン", desc: "練習場での対面ワンポイントレッスン（目安1.5〜2ヶ月分ポイント）。", points: 6000, img: "https://images.unsplash.com/photo-1592919505780-303950717480?w=400" },
+      { id: 9, category: "golf", title: "リアル ラウンドレッスン", desc: "コース同伴レッスン（3〜4ヶ月分ポイント想定＋各自プレー代等別途）。", points: 12000, img: "https://images.unsplash.com/photo-1593111774601-dfbce7de1a5c?w=400" }
+    ];
+
+    // --- 画面描画ロジック ---
+    function renderUI() {
+      document.getElementById('user-name').innerText = userState.name + " 様";
+      document.getElementById('current-points').innerHTML = userState.points.toLocaleString() + '<span>pt</span>';
+      renderContents('all');
+      renderHistory();
+    }
+
+    function renderContents(filter) {
+      const grid = document.getElementById('contents-grid');
+      grid.innerHTML = '';
+
+      contents.forEach(item => {
+        if (filter !== 'all' && item.category !== filter) return;
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-img" style="background-image: url('${item.img}')"></div>
+          <div class="card-body">
+            <div class="card-title">${item.title}</div>
+            <div class="card-desc">${item.desc}</div>
+            <div class="card-footer">
+              <div class="card-price">${item.points.toLocaleString()} pt</div>
+              <button class="btn btn-primary btn-sm" onclick="consumePoints('${item.title}', ${item.points})">申込む</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderHistory() {
+      const list = document.getElementById('history-list');
+      list.innerHTML = '';
+      userState.history.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'history-item';
+        const isPlus = item.amount > 0;
+        div.innerHTML = `
+          <div>
+            <div style="font-size:0.9rem;">${item.desc}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${item.date}</div>
+          </div>
+          <div class="history-amount ${isPlus ? 'plus' : 'minus'}">
+            ${isPlus ? '+' : ''}${item.amount.toLocaleString()} pt
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    // --- ポイント操作アクション ---
+    window.addPoints = function(amount) {
+      userState.points += amount;
+      userState.history.unshift({
+        date: new Date().toLocaleDateString('ja-JP'),
+        desc: "クレジットカード追加購入",
+        amount: +amount
+      });
+      alert(`${amount.toLocaleString()} pt を追加購入・反映しました！`);
+      renderUI();
+    };
+
+    window.consumePoints = function(title, cost) {
+      if (userState.points < cost) {
+        alert("ポイントが不足しています。ポイントを追加購入してください。");
+        return;
+      }
+      if (confirm(`「${title}」を ${cost.toLocaleString()} pt で申し込みますか？`)) {
+        userState.points -= cost;
+        userState.history.unshift({
+          date: new Date().toLocaleDateString('ja-JP'),
+          desc: `「${title}」へ利用`,
+          amount: -cost
+        });
+        alert("申込みが完了しました！");
+        renderUI();
+      }
+    };
+
+    // --- タブ＆モーダル操作 ---
+    window.filterCategory = function(cat) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      renderContents(cat);
+    };
+
+    window.openHistoryModal = () => document.getElementById('history-modal').style.display = 'flex';
+    window.closeHistoryModal = () => document.getElementById('history-modal').style.display = 'none';
+
+    // 初期化
+    renderUI();
+  </script>
+</body>
+</html>
