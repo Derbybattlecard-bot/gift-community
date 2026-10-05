@@ -16,6 +16,10 @@
       --text-muted: #9ca3af;
       --danger: #ef4444;
       --success: #10b981;
+      --online-bg: rgba(59, 130, 246, 0.2);
+      --online-border: #3b82f6;
+      --real-bg: rgba(16, 185, 129, 0.2);
+      --real-border: #10b981;
     }
 
     * {
@@ -40,6 +44,17 @@
     .header-container {
       max-width: 960px;
       margin: 0 auto;
+    }
+
+    .logo-area {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-area img {
+      max-width: 220px;
+      height: auto;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
     }
 
     .user-profile {
@@ -116,7 +131,6 @@
     }
     .section-title { font-size: 1.25rem; font-weight: 700; color: #fff; }
 
-    /* コントロールバー (検索 & タブ) */
     .controls-bar {
       display: flex;
       flex-wrap: wrap;
@@ -150,7 +164,6 @@
     }
     .tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
-    /* グリッドカード */
     .contents-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -165,11 +178,35 @@
       display: flex;
       flex-direction: column;
       cursor: pointer;
+      position: relative;
       transition: transform 0.2s, border-color 0.2s;
     }
     .card:hover { transform: translateY(-3px); border-color: var(--primary); }
 
-    .card-img { height: 140px; background-size: cover; background-position: center; }
+    .card-img { height: 140px; background-size: cover; background-position: center; position: relative; }
+
+    /* オンライン/リアル用バッジ */
+    .type-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+    .type-badge.online {
+      background: var(--online-bg);
+      border: 1px solid var(--online-border);
+      color: #93c5fd;
+    }
+    .type-badge.real {
+      background: var(--real-bg);
+      border: 1px solid var(--real-border);
+      color: #6ee7b7;
+    }
+
     .card-body { padding: 14px; display: flex; flex-direction: column; flex: 1; }
     .card-date { font-size: 0.75rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 4px; }
     .card-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
@@ -177,7 +214,6 @@
     .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
     .card-price { font-weight: 700; color: var(--accent-gold); font-size: 1rem; }
 
-    /* ショースケジュール エリア */
     .show-schedule-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -208,7 +244,6 @@
     .show-slot-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
     .show-slot { font-size: 0.85rem; color: var(--text-muted); background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; }
 
-    /* モーダル */
     .modal {
       display: none;
       position: fixed;
@@ -232,7 +267,7 @@
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 
     .modal-img {
-      width: 100%; height: 200px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 16px;
+      width: 100%; height: 200px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 16px; position: relative;
     }
     .modal-date { font-size: 0.85rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 6px; }
     .modal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
@@ -241,7 +276,6 @@
       background: rgba(255,255,255,0.05); padding: 12px 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
     }
 
-    /* フォーム要素 */
     .form-group { margin-bottom: 14px; }
     .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
     .form-group input, .form-group textarea, .form-group select {
@@ -258,6 +292,10 @@
 
   <header>
     <div class="header-container">
+      <div class="logo-area">
+        <img src="https://lh3.googleusercontent.com/d/1000028608.jpg" alt="GIFT ロゴ">
+      </div>
+
       <div class="user-profile">
         <div class="user-info">
           <h2>GIFT Community Member</h2>
@@ -367,16 +405,24 @@
       <h4 style="margin-bottom:10px; color:var(--accent-gold);">2. 新規コンテンツ / グッズの追加</h4>
       <div class="form-group">
         <label>タイトル</label>
-        <input type="text" id="new-title" placeholder="例: GIFT Tシャツ">
+        <input type="text" id="new-title" placeholder="例: ルービックキューブ体験">
       </div>
       <div class="form-group">
         <label>種別・カテゴリ</label>
         <select id="new-category">
-          <option value="event">交流・お出かけ（体験）</option>
           <option value="cube">キューブアート（体験）</option>
+          <option value="event">交流・お出かけ（体験）</option>
           <option value="golf">ゴルフ（体験）</option>
           <option value="goods">グッズ・アイテム</option>
           <option value="ticket">チケット</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>開催形態 (区分)</label>
+        <select id="new-location-type">
+          <option value="online">💻 オンライン</option>
+          <option value="real">📍 リアル (対面)</option>
+          <option value="none">該当なし (グッズ等)</option>
         </select>
       </div>
       <div class="form-group">
@@ -420,12 +466,12 @@
 
     // 体験コンテンツデータ
     let experiences = [
-      { id: 101, category: "cube", date: "2026-10-15", title: "ルービックキューブ 6面揃え方体験会", desc: "手元の動きを直接見ながら完成までの達成感を一緒に楽しむリアルワークショップです。", points: 2000, img: "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=500" },
-      { id: 102, category: "cube", date: "2026-10-22", title: "巨大キューブアート 共同制作イベント", desc: "参加者みんなで数百個のルービックキューブを組み合わせて1つのドット絵アートを完成させます！", points: 3900, img: "https://images.unsplash.com/photo-1539628372073-0355568e063c?w=500" },
-      { id: 103, category: "event", date: "2026-10-18", title: "マー君とお出かけ＆他コミュニティ交流清掃", desc: "マー君と一緒に靖国神社清掃活動等へ参加し、多種多様な人々と交流するお出かけ企画（定員15名）。", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500" },
-      { id: 104, category: "event", date: "2026-10-25", title: "メグちゃんの手料理 異業種交流ご飯会", desc: "メグちゃん特製の手料理を囲み、アットホームな雰囲気で語り合う限定ご飯会（定員8名 / 実費別途）。", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500" },
-      { id: 105, category: "golf", date: "2026-11-01", title: "オンライン スイング撮影アドバイス", desc: "普段のゴルフスイング動画を送っていただき、ワンポイントの改善アドバイスをお返しする体験です。", points: 1500, img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=500" },
-      { id: 106, category: "golf", date: "2026-11-12", title: "ゴルフ練習場 リアル打ちっぱなし交流会", desc: "練習場で一緒にボールを打ちながらアドバイスを受けられる体験レッスン（打席代別途）。", points: 6000, img: "https://images.unsplash.com/photo-1592919505780-303950717480?w=500" }
+      { id: 101, category: "cube", locationType: "online", date: "2026-10-15", title: "ルービックキューブ 6面完成オンラインWS", desc: "Zoomを使って画面越しに手順を丁寧にレクチャー！6面揃える達成感を自宅で楽しむオンライン講座です。", points: 2000, img: "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=500" },
+      { id: 102, category: "cube", locationType: "real", date: "2026-10-22", title: "ミニキューブアート作り体験（リアル）", desc: "ミニルービックキューブを並べて自分だけのドット絵アート作品を作る対面リアルワークショップです！", points: 3900, img: "https://images.unsplash.com/photo-1539628372073-0355568e063c?w=500" },
+      { id: 103, category: "event", locationType: "real", date: "2026-10-18", title: "マー君とお出かけ＆交流清掃（対面）", desc: "マー君と一緒に清掃活動等へ参加し、多種多様な人々と交流するお出かけ企画（定員15名）。", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500" },
+      { id: 104, category: "event", locationType: "real", date: "2026-10-25", title: "メグちゃんの手料理 交流ご飯会（対面）", desc: "メグちゃん特製の手料理を囲み、アットホームな雰囲気で語り合う限定リアルご飯会（定員8名）。", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500" },
+      { id: 105, category: "golf", locationType: "online", date: "2026-11-01", title: "スイング動画 オンラインアドバイス", desc: "普段のゴルフスイング動画を送信いただき、ワンポイントの改善アドバイスをお返しするオンライン体験です。", points: 1500, img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=500" },
+      { id: 106, category: "golf", locationType: "real", date: "2026-11-12", title: "打ちっぱなし リアルゴルフ交流会（対面）", desc: "練習場で一緒にボールを打ちながらアドバイスを受けられる対面交流イベント（打席代別途）。", points: 6000, img: "https://images.unsplash.com/photo-1592919505780-303950717480?w=500" }
     ];
 
     // ショースケジュール
@@ -439,8 +485,8 @@
 
     // グッズ・チケットデータ
     let goodsItems = [
-      { id: 201, category: "goods", date: "常時受付", title: "TEAM GIFTER Tシャツ", desc: "コミュニティ公式Tシャツ。サイズ展開：S・M・L・XL", points: 6000, hasSize: true, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" },
-      { id: 202, category: "ticket", date: "常時受付", title: "GIFTチケット 【1枚】", desc: "MAGIC LIVE SHOW GIFTの鑑賞招待チケットです。", points: 16500, hasSize: false, img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" }
+      { id: 201, category: "goods", locationType: "none", date: "常時受付", title: "TEAM GIFTER Tシャツ", desc: "コミュニティ公式Tシャツ。サイズ展開：S・M・L・XL", points: 6000, hasSize: true, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" },
+      { id: 202, category: "ticket", locationType: "none", date: "常時受付", title: "GIFTチケット 【1枚】", desc: "MAGIC LIVE SHOW GIFTの鑑賞招待チケットです。", points: 16500, hasSize: false, img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" }
     ];
 
     function renderUI() {
@@ -450,6 +496,15 @@
       renderShowSchedules();
       renderGoods();
       renderHistory();
+    }
+
+    function getTypeBadgeHtml(type) {
+      if (type === 'online') {
+        return '<div class="type-badge online">💻 オンライン</div>';
+      } else if (type === 'real') {
+        return '<div class="type-badge real">📍 リアル (対面)</div>';
+      }
+      return '';
     }
 
     function renderExperiences() {
@@ -474,7 +529,9 @@
         card.className = 'card';
         card.onclick = () => openDetailModal(item, 'exp');
         card.innerHTML = `
-          <div class="card-img" style="background-image: url('${item.img}')"></div>
+          <div class="card-img" style="background-image: url('${item.img}')">
+            ${getTypeBadgeHtml(item.locationType)}
+          </div>
           <div class="card-body">
             <div class="card-date">📅 ${item.date || '随時受付'}</div>
             <div class="card-title">${item.title}</div>
@@ -530,7 +587,6 @@
       });
     }
 
-    /* モーダル表示 */
     function openDetailModal(item, type) {
       const body = document.getElementById('modal-detail-body');
       
@@ -550,7 +606,9 @@
       }
 
       body.innerHTML = `
-        <div class="modal-img" style="background-image: url('${item.img}')"></div>
+        <div class="modal-img" style="background-image: url('${item.img}')">
+          ${getTypeBadgeHtml(item.locationType)}
+        </div>
         <div class="modal-date">${item.date ? '開催日 / 受付: ' + item.date : ''}</div>
         <div class="modal-title">${item.title}</div>
         <div class="modal-desc">${item.desc}</div>
@@ -574,7 +632,6 @@
       alert(`${region} 公演のチケット申込みは、画面最下部の「GIFTチケット」からお手続きいただくか、運営事務局へお問い合わせください。`);
     }
 
-    /* 検索 & カテゴリ */
     function filterCategory(cat, btn) {
       currentCategory = cat;
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -587,7 +644,6 @@
       renderExperiences();
     }
 
-    /* ポイント処理 */
     function addPoints(amount) {
       userState.points += amount;
       userState.history.unshift({
@@ -644,7 +700,6 @@
       });
     }
 
-    /* 管理者追加アクション */
     function addShowSchedule() {
       const region = document.getElementById('show-region').value;
       const status = document.getElementById('show-status').value;
@@ -665,6 +720,7 @@
     function addNewItem() {
       const title = document.getElementById('new-title').value;
       const category = document.getElementById('new-category').value;
+      const locationType = document.getElementById('new-location-type').value;
       const date = document.getElementById('new-date').value;
       const points = parseInt(document.getElementById('new-points').value);
       const hasSize = (document.getElementById('new-has-size').value === 'yes');
@@ -679,12 +735,13 @@
       const itemObj = {
         id: Date.now(),
         category,
+        locationType,
         date: date || "常時受付",
         title,
         desc: desc || "詳細情報は準備中です。",
         points,
         hasSize,
-        img: img || "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500"
+        img: img || "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=500"
       };
 
       if (category === 'goods' || category === 'ticket') {
@@ -698,7 +755,6 @@
       renderUI();
     }
 
-    // 初期化実行
     renderUI();
   </script>
 </body>
