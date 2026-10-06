@@ -49,12 +49,26 @@
     .logo-area {
       text-align: center;
       margin-bottom: 20px;
+      background-color: #000000;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      display: inline-block;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .logo-area-wrapper {
+      text-align: center;
     }
 
     .logo-area img {
-      max-width: 220px;
+      max-width: 240px;
+      width: 100%;
       height: auto;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+      display: block;
+      margin: 0 auto;
+      background-color: #000000;
     }
 
     .user-profile {
@@ -292,8 +306,10 @@
 
   <header>
     <div class="header-container">
-      <div class="logo-area">
-        <img src="gift.jpg" alt="GIFT ロゴ">
+      <div class="logo-area-wrapper">
+        <div class="logo-area">
+          <img src="gift.jpg" alt="GIFT ロゴ">
+        </div>
       </div>
 
       <div class="user-profile">
@@ -464,10 +480,10 @@
       ]
     };
 
-    // 体験コンテンツデータ
+    // 体験コンテンツデータ（ルービックキューブ画像URLを最新に指定）
     let experiences = [
-      { id: 101, category: "cube", locationType: "online", date: "2026-10-15", title: "ルービックキューブ 6面完成オンラインWS", desc: "Zoomを使って画面越しに手順を丁寧にレクチャー！6面揃える達成感を自宅で楽しむオンライン講座です。", points: 2000, img: "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=500" },
-      { id: 102, category: "cube", locationType: "real", date: "2026-10-22", title: "ミニキューブアート作り体験（リアル）", desc: "ミニルービックキューブを並べて自分だけのドット絵アート作品を作る対面リアルワークショップです！", points: 3900, img: "https://images.unsplash.com/photo-1539628372073-0355568e063c?w=500" },
+      { id: 101, category: "cube", locationType: "online", date: "2026-10-15", title: "ルービックキューブ 6面完成オンラインWS", desc: "Zoomを使って画面越しに手順を丁寧にレクチャー！6面揃える達成感を自宅で楽しむオンライン講座です。", points: 2000, img: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80" },
+      { id: 102, category: "cube", locationType: "real", date: "2026-10-22", title: "ミニキューブアート作り体験（リアル）", desc: "ミニルービックキューブを並べて自分だけのドット絵アート作品を作る対面リアルワークショップです！", points: 3900, img: "https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=600&q=80" },
       { id: 103, category: "event", locationType: "real", date: "2026-10-18", title: "マー君とお出かけ＆交流清掃（対面）", desc: "マー君と一緒に清掃活動等へ参加し、多種多様な人々と交流するお出かけ企画（定員15名）。", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500" },
       { id: 104, category: "event", locationType: "real", date: "2026-10-25", title: "メグちゃんの手料理 交流ご飯会（対面）", desc: "メグちゃん特製の手料理を囲み、アットホームな雰囲気で語り合う限定リアルご飯会（定員8名）。", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500" },
       { id: 105, category: "golf", locationType: "online", date: "2026-11-01", title: "スイング動画 オンラインアドバイス", desc: "普段のゴルフスイング動画を送信いただき、ワンポイントの改善アドバイスをお返しするオンライン体験です。", points: 1500, img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=500" },
@@ -741,7 +757,7 @@
         desc: desc || "詳細情報は準備中です。",
         points,
         hasSize,
-        img: img || "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=500"
+        img: img || "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80"
       };
 
       if (category === 'goods' || category === 'ticket') {
