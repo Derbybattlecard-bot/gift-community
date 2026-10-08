@@ -199,7 +199,6 @@
 
     .card-img { height: 140px; background-size: cover; background-position: center; position: relative; }
 
-    /* オンライン/リアル用バッジ */
     .type-badge {
       position: absolute;
       top: 10px;
@@ -337,7 +336,6 @@
   </header>
 
   <main>
-    <!-- 1. 体験・コミュニティコンテンツ (画面上部) -->
     <div class="section-header">
       <h2 class="section-title">✨ 体験・コミュニティ企画</h2>
     </div>
@@ -356,20 +354,17 @@
 
     <div class="contents-grid" id="contents-grid"></div>
 
-    <!-- 2. ショースケジュール一覧 -->
     <div class="section-header">
       <h2 class="section-title">🎪 MAGIC LIVE SHOW "GIFT" 全国ツアー予定</h2>
     </div>
     <div class="show-schedule-container" id="show-schedule-grid"></div>
 
-    <!-- 3. グッズ・チケット (画面最下部) -->
     <div class="section-header">
       <h2 class="section-title">🛍️ 39 GIFT SHOP（グッズ・チケット）</h2>
     </div>
     <div class="contents-grid" id="goods-grid"></div>
   </main>
 
-  <!-- 詳細モーダル -->
   <div class="modal" id="detail-modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -380,7 +375,6 @@
     </div>
   </div>
 
-  <!-- 履歴モーダル -->
   <div class="modal" id="history-modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -391,7 +385,6 @@
     </div>
   </div>
 
-  <!-- 管理者モーダル -->
   <div class="modal" id="admin-modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -480,17 +473,16 @@
       ]
     };
 
-    // 体験コンテンツデータ（ルービックキューブ画像URLを最新に指定）
+    // 体験コンテンツデータ
     let experiences = [
-      { id: 101, category: "cube", locationType: "online", date: "2026-10-15", title: "ルービックキューブ 6面完成オンラインWS", desc: "Zoomを使って画面越しに手順を丁寧にレクチャー！6面揃える達成感を自宅で楽しむオンライン講座です。", points: 2000, img: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80" },
-      { id: 102, category: "cube", locationType: "real", date: "2026-10-22", title: "ミニキューブアート作り体験（リアル）", desc: "ミニルービックキューブを並べて自分だけのドット絵アート作品を作る対面リアルワークショップです！", points: 3900, img: "https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=600&q=80" },
+      { id: 101, category: "cube", locationType: "online", date: "2026-10-15", title: "ルービックキューブ 6面完成オンラインWS", desc: "Zoomを使って画面越しに手順を丁寧にレクチャー！6面揃える達成感を自宅で楽しむオンライン講座です。", points: 2000, img: "https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=600&q=80" },
+      { id: 102, category: "cube", locationType: "real", date: "2026-10-22", title: "ミニキューブアート作り体験（リアル）", desc: "ミニルービックキューブを並べて自分だけのドット絵アート作品を作る対面リアルワークショップです！", points: 3900, img: "1000000931.jpg" },
       { id: 103, category: "event", locationType: "real", date: "2026-10-18", title: "マー君とお出かけ＆交流清掃（対面）", desc: "マー君と一緒に清掃活動等へ参加し、多種多様な人々と交流するお出かけ企画（定員15名）。", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500" },
       { id: 104, category: "event", locationType: "real", date: "2026-10-25", title: "メグちゃんの手料理 交流ご飯会（対面）", desc: "メグちゃん特製の手料理を囲み、アットホームな雰囲気で語り合う限定リアルご飯会（定員8名）。", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500" },
       { id: 105, category: "golf", locationType: "online", date: "2026-11-01", title: "スイング動画 オンラインアドバイス", desc: "普段のゴルフスイング動画を送信いただき、ワンポイントの改善アドバイスをお返しするオンライン体験です。", points: 1500, img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=500" },
       { id: 106, category: "golf", locationType: "real", date: "2026-11-12", title: "打ちっぱなし リアルゴルフ交流会（対面）", desc: "練習場で一緒にボールを打ちながらアドバイスを受けられる対面交流イベント（打席代別途）。", points: 6000, img: "https://images.unsplash.com/photo-1592919505780-303950717480?w=500" }
     ];
 
-    // ショースケジュール
     let showSchedules = [
       { id: 1, region: "【 東京 】", status: "開催間近！！", slots: ["10月18日(日) 12:00〜", "10月18日(日) 17:00〜", "12月5日(土) 12:00〜", "12月5日(土) 17:00〜"] },
       { id: 2, region: "【 愛媛 】", status: "開催間近！！", slots: ["11月7日(土) 12:00〜", "11月7日(土) 17:00〜", "11月8日(日) 12:00〜", "11月8日(日) 17:00〜"] },
@@ -499,7 +491,6 @@
       { id: 5, region: "【 愛知 】", status: "2027年開催", slots: ["2月13日(土) 12:00〜", "2月13日(土) 17:00〜", "2月14日(日) 12:00〜", "2月14日(日) 17:00〜"] }
     ];
 
-    // グッズ・チケットデータ
     let goodsItems = [
       { id: 201, category: "goods", locationType: "none", date: "常時受付", title: "TEAM GIFTER Tシャツ", desc: "コミュニティ公式Tシャツ。サイズ展開：S・M・L・XL", points: 6000, hasSize: true, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" },
       { id: 202, category: "ticket", locationType: "none", date: "常時受付", title: "GIFTチケット 【1枚】", desc: "MAGIC LIVE SHOW GIFTの鑑賞招待チケットです。", points: 16500, hasSize: false, img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" }
