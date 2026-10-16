@@ -22,203 +22,106 @@
       --real-border: #10b981;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      padding-bottom: 80px;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); padding-bottom: 80px; }
 
     header {
       background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
       padding: 24px 20px;
       border-bottom: 1px solid var(--card-border);
     }
-
-    .header-container {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
+    .header-container { max-width: 960px; margin: 0 auto; }
+    .logo-area-wrapper { text-align: center; }
     .logo-area {
-      text-align: center;
-      margin-bottom: 20px;
-      background-color: #000000;
-      padding: 16px;
-      border-radius: 12px;
+      text-align: center; margin-bottom: 20px; background-color: #000000;
+      padding: 16px; border-radius: 12px; border: 1px solid var(--card-border);
+      display: inline-block; width: 100%; max-width: 320px;
+    }
+    .logo-area img { max-width: 240px; width: 100%; height: auto; display: block; margin: 0 auto; background-color: #000000; }
+
+    .auth-box {
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--card-border);
-      display: inline-block;
-      width: 100%;
-      max-width: 320px;
-    }
-
-    .logo-area-wrapper {
-      text-align: center;
-    }
-
-    .logo-area img {
-      max-width: 240px;
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      background-color: #000000;
-    }
-
-    .user-profile {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      border-radius: 12px;
+      padding: 12px 16px;
       margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .auth-inputs { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; }
+    .auth-inputs input {
+      padding: 6px 10px; background: #0d0f17; border: 1px solid var(--card-border);
+      border-radius: 6px; color: #fff; font-size: 0.85rem;
     }
 
+    .user-profile { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
     .user-info h2 { font-size: 0.95rem; color: var(--text-muted); font-weight: 400; }
     .user-info h1 { font-size: 1.4rem; font-weight: 700; color: #fff; }
 
     .config-btn {
-      background: transparent;
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.8rem;
+      background: transparent; border: 1px solid var(--card-border); color: var(--text-muted);
+      padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem;
     }
     .config-btn.admin { border-color: var(--accent-gold); color: var(--accent-gold); }
 
     .status-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px); border-radius: 16px; padding: 20px;
+      display: flex; flex-direction: column; gap: 15px;
     }
-
-    .point-display {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
+    .point-display { display: flex; justify-content: space-between; align-items: flex-end; }
     .point-label { font-size: 0.85rem; color: var(--text-muted); }
     .point-value { font-size: 2.6rem; font-weight: 800; color: var(--accent-gold); line-height: 1; }
     .point-value span { font-size: 1.1rem; color: var(--text-main); margin-left: 4px; }
     .point-subinfo { font-size: 0.85rem; color: var(--success); }
 
     .action-buttons { display: flex; gap: 10px; }
-    .btn {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-align: center;
-    }
+    .btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; text-align: center; }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary-hover); }
     .btn-secondary { background: rgba(255, 255, 255, 0.1); color: var(--text-main); }
 
-    main {
-      max-width: 960px;
-      margin: 24px auto;
-      padding: 0 16px;
-    }
+    main { max-width: 960px; margin: 24px auto; padding: 0 16px; }
 
     .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 32px 0 16px;
-      border-left: 4px solid var(--accent-gold);
-      padding-left: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      margin: 32px 0 16px; border-left: 4px solid var(--accent-gold); padding-left: 12px;
     }
     .section-title { font-size: 1.25rem; font-weight: 700; color: #fff; }
 
-    .controls-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
+    .controls-bar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 16px; }
     .search-box { flex: 1; min-width: 200px; }
     .search-box input {
-      width: 100%;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-      background: var(--card-bg);
-      color: #fff;
-      font-size: 0.9rem;
+      width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--card-border);
+      background: var(--card-bg); color: #fff; font-size: 0.9rem;
     }
 
     .category-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
     .tab {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      white-space: nowrap;
-      cursor: pointer;
+      background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-muted);
+      padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; white-space: nowrap; cursor: pointer;
     }
     .tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
-    .contents-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
-    }
+    .contents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      position: relative;
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px;
+      overflow: hidden; display: flex; flex-direction: column; cursor: pointer; position: relative;
       transition: transform 0.2s, border-color 0.2s;
     }
     .card:hover { transform: translateY(-3px); border-color: var(--primary); }
-
     .card-img { height: 140px; background-size: cover; background-position: center; position: relative; }
 
     .type-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 12px;
-      backdrop-filter: blur(4px);
+      position: absolute; top: 10px; left: 10px; font-size: 0.75rem; font-weight: 700;
+      padding: 3px 8px; border-radius: 12px; backdrop-filter: blur(4px);
     }
-    .type-badge.online {
-      background: var(--online-bg);
-      border: 1px solid var(--online-border);
-      color: #93c5fd;
-    }
-    .type-badge.real {
-      background: var(--real-bg);
-      border: 1px solid var(--real-border);
-      color: #6ee7b7;
-    }
+    .type-badge.online { background: var(--online-bg); border: 1px solid var(--online-border); color: #93c5fd; }
+    .type-badge.real { background: var(--real-bg); border: 1px solid var(--real-border); color: #6ee7b7; }
 
     .card-body { padding: 14px; display: flex; flex-direction: column; flex: 1; }
     .card-date { font-size: 0.75rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 4px; }
@@ -227,67 +130,40 @@
     .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
     .card-price { font-weight: 700; color: var(--accent-gold); font-size: 1rem; }
 
-    .show-schedule-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-    }
-
+    .show-schedule-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
     .show-card {
-      background: linear-gradient(145deg, #181c2a 0%, #0f121d 100%);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 16px;
-      position: relative;
+      background: linear-gradient(145deg, #181c2a 0%, #0f121d 100%); border: 1px solid var(--card-border);
+      border-radius: 12px; padding: 16px; position: relative;
     }
-
     .show-card-badge {
-      position: absolute;
-      top: 12px; right: 12px;
-      background: rgba(245, 158, 11, 0.2);
-      border: 1px solid var(--accent-gold);
-      color: var(--accent-gold);
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-weight: 600;
+      position: absolute; top: 12px; right: 12px; background: rgba(245, 158, 11, 0.2);
+      border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; font-weight: 600;
     }
-
     .show-region { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
     .show-slot-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
     .show-slot { font-size: 0.85rem; color: var(--text-muted); background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; }
 
     .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
-      z-index: 1000;
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85); justify-content: center; align-items: center; padding: 16px; z-index: 1000;
     }
     .modal-content {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      max-width: 520px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 20px;
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px;
+      max-width: 580px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 20px;
     }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 
-    .modal-img {
-      width: 100%; height: 200px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 16px; position: relative;
-    }
+    .modal-img { width: 100%; height: 200px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 16px; position: relative; }
     .modal-date { font-size: 0.85rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 6px; }
     .modal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
     .modal-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; white-space: pre-wrap; }
     .modal-price-box {
       background: rgba(255,255,255,0.05); padding: 12px 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
     }
+
+    .admin-tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; }
+    .admin-tab { padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; cursor: pointer; color: var(--text-muted); background: transparent; border: none; }
+    .admin-tab.active { background: var(--primary); color: #fff; }
 
     .form-group { margin-bottom: 14px; }
     .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
@@ -299,6 +175,10 @@
     .history-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid var(--card-border); }
     .history-amount.plus { color: var(--success); }
     .history-amount.minus { color: var(--danger); }
+
+    .participant-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 10px; }
+    .participant-table th, .participant-table td { padding: 8px; border: 1px solid var(--card-border); text-align: left; }
+    .participant-table th { background: rgba(255,255,255,0.05); color: var(--accent-gold); }
   </style>
 </head>
 <body>
@@ -309,6 +189,15 @@
         <div class="logo-area">
           <img src="gift.jpg" alt="GIFT ロゴ">
         </div>
+      </div>
+
+      <!-- メアド・パスワード登録/ログイン枠 -->
+      <div class="auth-box">
+        <div class="auth-inputs">
+          <input type="email" id="login-email" placeholder="メールアドレス">
+          <input type="password" id="login-pass" placeholder="パスワード">
+        </div>
+        <button class="config-btn" onclick="simulatedLogin()">ログイン / 会員登録</button>
       </div>
 
       <div class="user-profile">
@@ -365,6 +254,7 @@
     <div class="contents-grid" id="goods-grid"></div>
   </main>
 
+  <!-- 詳細モーダル -->
   <div class="modal" id="detail-modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -375,6 +265,7 @@
     </div>
   </div>
 
+  <!-- 履歴モーダル -->
   <div class="modal" id="history-modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -385,79 +276,142 @@
     </div>
   </div>
 
+  <!-- 管理者モーダル -->
   <div class="modal" id="admin-modal">
     <div class="modal-content">
       <div class="modal-header">
         <h3>⚙️ 管理者パネル</h3>
         <button class="config-btn" onclick="closeAdminModal()">✕</button>
       </div>
-      
-      <h4 style="margin-bottom:10px; color:var(--accent-gold);">1. 新規ショースケジュールの追加</h4>
-      <div class="form-group">
-        <label>エリア・都市名</label>
-        <input type="text" id="show-region" placeholder="例: 【 東京 】">
-      </div>
-      <div class="form-group">
-        <label>ステータス</label>
-        <select id="show-status">
-          <option value="開催間近！！">開催間近！！</option>
-          <option value="通常受付中">通常受付中</option>
-          <option value="残席わずか">残席わずか</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>公演日時（改行で複数）</label>
-        <textarea id="show-slots" rows="3" placeholder="10月18日(日) 12:00〜&#10;10月18日(日) 17:00〜"></textarea>
-      </div>
-      <button class="btn btn-secondary" style="width:100%; margin-bottom:20px;" onclick="addShowSchedule()">ショースケジュールを追加</button>
 
-      <h4 style="margin-bottom:10px; color:var(--accent-gold);">2. 新規コンテンツ / グッズの追加</h4>
-      <div class="form-group">
-        <label>タイトル</label>
-        <input type="text" id="new-title" placeholder="例: ルービックキューブ体験">
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('participants', this)">👥 申込・参加者リスト</button>
+        <button class="admin-tab" onclick="switchAdminTab('edit', this)">✏️ イベント修正・編集</button>
+        <button class="admin-tab" onclick="switchAdminTab('add-exp', this)">➕ 新規イベント追加</button>
+        <button class="admin-tab" onclick="switchAdminTab('add-show', this)">🎪 ショー追加</button>
       </div>
-      <div class="form-group">
-        <label>種別・カテゴリ</label>
-        <select id="new-category">
-          <option value="cube">キューブ（体験）</option>
-          <option value="event">交流・お出かけ（体験）</option>
-          <option value="golf">ゴルフ（体験）</option>
-          <option value="goods">グッズ・アイテム</option>
-          <option value="ticket">チケット</option>
-        </select>
+
+      <!-- タブ1: 参加者リスト -->
+      <div id="admin-panel-participants">
+        <h4 style="margin-bottom:10px; color:var(--accent-gold);">申込・参加者一覧</h4>
+        <div style="overflow-x:auto;">
+          <table class="participant-table">
+            <thead>
+              <tr>
+                <th>日時</th>
+                <th>ユーザー名</th>
+                <th>申込項目</th>
+                <th>ポイント</th>
+              </tr>
+            </thead>
+            <tbody id="participant-list-body"></tbody>
+          </table>
+        </div>
       </div>
-      <div class="form-group">
-        <label>開催形態 (区分)</label>
-        <select id="new-location-type">
-          <option value="online">💻 オンライン</option>
-          <option value="real">📍 リアル (対面)</option>
-          <option value="none">該当なし (グッズ等)</option>
-        </select>
+
+      <!-- タブ2: イベント修正・編集 -->
+      <div id="admin-panel-edit" style="display:none;">
+        <h4 style="margin-bottom:10px; color:var(--accent-gold);">既存コンテンツの編集</h4>
+        <div class="form-group">
+          <label>編集するコンテンツを選択</label>
+          <select id="edit-select-item" onchange="loadItemToEdit()"></select>
+        </div>
+        <div class="form-group">
+          <label>タイトル</label>
+          <input type="text" id="edit-title">
+        </div>
+        <div class="form-group">
+          <label>開催日 / 受付状況</label>
+          <input type="text" id="edit-date">
+        </div>
+        <div class="form-group">
+          <label>必要ポイント</label>
+          <input type="number" id="edit-points">
+        </div>
+        <div class="form-group">
+          <label>画像URL</label>
+          <input type="text" id="edit-img">
+        </div>
+        <div class="form-group">
+          <label>詳細説明</label>
+          <textarea id="edit-desc" rows="3"></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" onclick="saveEditedItem()">変更内容を保存する</button>
       </div>
-      <div class="form-group">
-        <label>開催日 / 提供予定</label>
-        <input type="date" id="new-date">
+
+      <!-- タブ3: 新規追加 -->
+      <div id="admin-panel-add-exp" style="display:none;">
+        <h4 style="margin-bottom:10px; color:var(--accent-gold);">新規コンテンツ / グッズの追加</h4>
+        <div class="form-group">
+          <label>タイトル</label>
+          <input type="text" id="new-title" placeholder="例: ルービックキューブ体験">
+        </div>
+        <div class="form-group">
+          <label>種別・カテゴリ</label>
+          <select id="new-category">
+            <option value="cube">キューブアート（体験）</option>
+            <option value="event">交流・お出かけ（体験）</option>
+            <option value="golf">ゴルフ（体験）</option>
+            <option value="goods">グッズ・アイテム</option>
+            <option value="ticket">チケット</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>開催形態 (区分)</label>
+          <select id="new-location-type">
+            <option value="online">💻 オンライン</option>
+            <option value="real">📍 リアル (対面)</option>
+            <option value="none">該当なし (グッズ等)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>開催日 / 提供予定</label>
+          <input type="date" id="new-date">
+        </div>
+        <div class="form-group">
+          <label>必要ポイント</label>
+          <input type="number" id="new-points" placeholder="3900">
+        </div>
+        <div class="form-group">
+          <label>オプション設定 (Tシャツサイズ等)</label>
+          <select id="new-has-size">
+            <option value="no">サイズ選択なし</option>
+            <option value="yes">サイズ選択あり (S/M/L/XL)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>画像URL</label>
+          <input type="text" id="new-img" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label>詳細説明</label>
+          <textarea id="new-desc" rows="3" placeholder="詳細を入力"></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" onclick="addNewItem()">新規保存・追加</button>
       </div>
-      <div class="form-group">
-        <label>必要ポイント</label>
-        <input type="number" id="new-points" placeholder="3900">
+
+      <!-- タブ4: ショー追加 -->
+      <div id="admin-panel-add-show" style="display:none;">
+        <h4 style="margin-bottom:10px; color:var(--accent-gold);">新規ショースケジュールの追加</h4>
+        <div class="form-group">
+          <label>エリア・都市名</label>
+          <input type="text" id="show-region" placeholder="例: 【 東京 】">
+        </div>
+        <div class="form-group">
+          <label>ステータス</label>
+          <select id="show-status">
+            <option value="開催間近！！">開催間近！！</option>
+            <option value="通常受付中">通常受付中</option>
+            <option value="残席わずか">残席わずか</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>公演日時（改行で複数）</label>
+          <textarea id="show-slots" rows="3" placeholder="10月18日(日) 12:00〜&#10;10月18日(日) 17:00〜"></textarea>
+        </div>
+        <button class="btn btn-secondary" style="width:100%; margin-bottom:20px;" onclick="addShowSchedule()">ショースケジュールを追加</button>
       </div>
-      <div class="form-group">
-        <label>オプション設定 (Tシャツサイズ等)</label>
-        <select id="new-has-size">
-          <option value="no">サイズ選択なし</option>
-          <option value="yes">サイズ選択あり (S/M/L/XL)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>画像URL</label>
-        <input type="text" id="new-img" placeholder="https://...">
-      </div>
-      <div class="form-group">
-        <label>詳細説明</label>
-        <textarea id="new-desc" rows="3" placeholder="詳細を入力"></textarea>
-      </div>
-      <button class="btn btn-primary" style="width:100%;" onclick="addNewItem()">新規保存・追加</button>
+
     </div>
   </div>
 
@@ -467,11 +421,18 @@
 
     let userState = {
       name: "マジック太郎",
+      email: "user@example.com",
       points: 3900,
       history: [
         { date: "2026/10/01", desc: "10月分月額自動付与", amount: +3900 }
       ]
     };
+
+    // 参加者・申込管理リスト
+    let participantList = [
+      { date: "2026/10/02", name: "マジック太郎", item: "ミニキューブアート作り体験（リアル）", points: 3900 },
+      { date: "2026/10/05", name: "山田花子 様", item: "TEAM GIFTER Tシャツ (Mサイズ)", points: 6000 }
+    ];
 
     // 体験コンテンツデータ
     let experiences = [
@@ -486,9 +447,7 @@
     let showSchedules = [
       { id: 1, region: "【 東京 】", status: "開催間近！！", slots: ["10月18日(日) 12:00〜", "10月18日(日) 17:00〜", "12月5日(土) 12:00〜", "12月5日(土) 17:00〜"] },
       { id: 2, region: "【 愛媛 】", status: "開催間近！！", slots: ["11月7日(土) 12:00〜", "11月7日(土) 17:00〜", "11月8日(日) 12:00〜", "11月8日(日) 17:00〜"] },
-      { id: 3, region: "【 大阪 】", status: "通常受付中", slots: ["11月14日(土) 12:00〜", "11月14日(土) 17:00〜", "11月15日(日) 12:00〜", "11月15日(日) 17:00〜"] },
-      { id: 4, region: "【 沖縄 】", status: "2027年開催", slots: ["1月16日(土) 12:00〜", "1月16日(土) 17:00〜", "1月17日(日) 12:00〜", "1月17日(日) 17:00〜"] },
-      { id: 5, region: "【 愛知 】", status: "2027年開催", slots: ["2月13日(土) 12:00〜", "2月13日(土) 17:00〜", "2月14日(日) 12:00〜", "2月14日(日) 17:00〜"] }
+      { id: 3, region: "【 大阪 】", status: "通常受付中", slots: ["11月14日(土) 12:00〜", "11月14日(土) 17:00〜", "11月15日(日) 12:00〜", "11月15日(日) 17:00〜"] }
     ];
 
     let goodsItems = [
@@ -503,14 +462,22 @@
       renderShowSchedules();
       renderGoods();
       renderHistory();
+      renderParticipantList();
+      populateEditSelectOptions();
+    }
+
+    function simulatedLogin() {
+      const email = document.getElementById('login-email').value;
+      if (!email) { alert("メールアドレスを入力してください。"); return; }
+      userState.email = email;
+      userState.name = email.split('@')[0];
+      alert(`「${userState.name}」としてログイン完了しました。`);
+      renderUI();
     }
 
     function getTypeBadgeHtml(type) {
-      if (type === 'online') {
-        return '<div class="type-badge online">💻 オンライン</div>';
-      } else if (type === 'real') {
-        return '<div class="type-badge real">📍 リアル (対面)</div>';
-      }
+      if (type === 'online') return '<div class="type-badge online">💻 オンライン</div>';
+      if (type === 'real') return '<div class="type-badge real">📍 リアル (対面)</div>';
       return '';
     }
 
@@ -519,7 +486,6 @@
       grid.innerHTML = '';
 
       let filtered = experiences.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
-
       filtered = filtered.filter(item => {
         const matchCat = (currentCategory === 'all' || item.category === currentCategory);
         const matchSearch = item.title.includes(searchQuery) || item.desc.includes(searchQuery);
@@ -556,7 +522,6 @@
     function renderShowSchedules() {
       const container = document.getElementById('show-schedule-grid');
       container.innerHTML = '';
-
       showSchedules.forEach(item => {
         const card = document.createElement('div');
         card.className = 'show-card';
@@ -574,7 +539,6 @@
     function renderGoods() {
       const grid = document.getElementById('goods-grid');
       grid.innerHTML = '';
-
       goodsItems.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
@@ -596,7 +560,6 @@
 
     function openDetailModal(item, type) {
       const body = document.getElementById('modal-detail-body');
-      
       let optionHtml = '';
       if (item.hasSize) {
         optionHtml = `
@@ -634,6 +597,62 @@
     function closeHistoryModal() { document.getElementById('history-modal').style.display = 'none'; }
     function openAdminModal() { document.getElementById('admin-modal').style.display = 'flex'; }
     function closeAdminModal() { document.getElementById('admin-modal').style.display = 'none'; }
+
+    function switchAdminTab(tabName, btn) {
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('admin-panel-participants').style.display = (tabName === 'participants') ? 'block' : 'none';
+      document.getElementById('admin-panel-edit').style.display = (tabName === 'edit') ? 'block' : 'none';
+      document.getElementById('admin-panel-add-exp').style.display = (tabName === 'add-exp') ? 'block' : 'none';
+      document.getElementById('admin-panel-add-show').style.display = (tabName === 'add-show') ? 'block' : 'none';
+    }
+
+    function renderParticipantList() {
+      const tbody = document.getElementById('participant-list-body');
+      tbody.innerHTML = '';
+      participantList.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${p.date}</td><td>${p.name}</td><td>${p.item}</td><td>${p.points.toLocaleString()} pt</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function populateEditSelectOptions() {
+      const select = document.getElementById('edit-select-item');
+      select.innerHTML = '<option value="">-- 編集対象を選択してください --</option>';
+      [...experiences, ...goodsItems].forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.id;
+        opt.innerText = item.title;
+        select.appendChild(opt);
+      });
+    }
+
+    function loadItemToEdit() {
+      const id = parseInt(document.getElementById('edit-select-item').value);
+      const item = [...experiences, ...goodsItems].find(x => x.id === id);
+      if (!item) return;
+      document.getElementById('edit-title').value = item.title;
+      document.getElementById('edit-date').value = item.date;
+      document.getElementById('edit-points').value = item.points;
+      document.getElementById('edit-img').value = item.img;
+      document.getElementById('edit-desc').value = item.desc;
+    }
+
+    function saveEditedItem() {
+      const id = parseInt(document.getElementById('edit-select-item').value);
+      const item = [...experiences, ...goodsItems].find(x => x.id === id);
+      if (!item) { alert("対象を選択してください。"); return; }
+
+      item.title = document.getElementById('edit-title').value;
+      item.date = document.getElementById('edit-date').value;
+      item.points = parseInt(document.getElementById('edit-points').value);
+      item.img = document.getElementById('edit-img').value;
+      item.desc = document.getElementById('edit-desc').value;
+
+      alert("コンテンツ情報を更新しました！");
+      renderUI();
+    }
 
     function openTicketNotice(region) {
       alert(`${region} 公演のチケット申込みは、画面最下部の「GIFTチケット」からお手続きいただくか、運営事務局へお問い合わせください。`);
@@ -674,13 +693,24 @@
         extraDesc = ` (${size}サイズ)`;
       }
 
-      if (confirm(`「${title}${extraDesc}」を ${cost.toLocaleString()} pt で申し込みますか？`)) {
+      const fullTitle = title + extraDesc;
+
+      if (confirm(`「${fullTitle}」を ${cost.toLocaleString()} pt で申し込みますか？`)) {
         userState.points -= cost;
         userState.history.unshift({
           date: new Date().toLocaleDateString('ja-JP'),
-          desc: `「${title}${extraDesc}」へ利用`,
+          desc: `「${fullTitle}」へ利用`,
           amount: -cost
         });
+
+        // 参加者リストに追加
+        participantList.unshift({
+          date: new Date().toLocaleDateString('ja-JP'),
+          name: userState.name,
+          item: fullTitle,
+          points: cost
+        });
+
         alert("申込みが完了しました！");
         closeDetailModal();
         renderUI();
