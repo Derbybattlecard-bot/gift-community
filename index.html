@@ -170,6 +170,7 @@
     .form-group input, .form-group textarea, .form-group select {
       width: 100%; padding: 10px; background: #0d0f17; border: 1px solid var(--card-border); border-radius: 6px; color: #fff; font-size: 0.9rem;
     }
+    .form-group input[type="file"] { padding: 6px; }
 
     .history-list { display: flex; flex-direction: column; gap: 10px; }
     .history-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid var(--card-border); }
@@ -191,7 +192,6 @@
         </div>
       </div>
 
-      <!-- メアド・パスワード登録/ログイン枠 -->
       <div class="auth-box">
         <div class="auth-inputs">
           <input type="email" id="login-email" placeholder="メールアドレス">
@@ -203,7 +203,7 @@
       <div class="user-profile">
         <div class="user-info">
           <h2>GIFT Community Member</h2>
-          <h1 id="user-name">ゲスト ユーザー 様</h1>
+          <h1 id="user-name">GIFT太郎 様</h1>
         </div>
         <button class="config-btn admin" onclick="openAdminModal()">⚙️ 管理者画面</button>
       </div>
@@ -254,11 +254,11 @@
     <div class="contents-grid" id="goods-grid"></div>
   </main>
 
-  <!-- 詳細モーダル -->
+  <!-- 詳細・編集モーダル -->
   <div class="modal" id="detail-modal">
     <div class="modal-content">
       <div class="modal-header">
-        <span style="font-size:0.85rem; color:var(--text-muted);">詳細情報</span>
+        <span style="font-size:0.85rem; color:var(--text-muted);" id="modal-mode-label">詳細情報</span>
         <button class="config-btn" onclick="closeDetailModal()">✕</button>
       </div>
       <div id="modal-detail-body"></div>
@@ -286,12 +286,10 @@
 
       <div class="admin-tabs">
         <button class="admin-tab active" onclick="switchAdminTab('participants', this)">👥 申込・参加者リスト</button>
-        <button class="admin-tab" onclick="switchAdminTab('edit', this)">✏️ イベント修正・編集</button>
         <button class="admin-tab" onclick="switchAdminTab('add-exp', this)">➕ 新規イベント追加</button>
         <button class="admin-tab" onclick="switchAdminTab('add-show', this)">🎪 ショー追加</button>
       </div>
 
-      <!-- タブ1: 参加者リスト -->
       <div id="admin-panel-participants">
         <h4 style="margin-bottom:10px; color:var(--accent-gold);">申込・参加者一覧</h4>
         <div style="overflow-x:auto;">
@@ -309,37 +307,6 @@
         </div>
       </div>
 
-      <!-- タブ2: イベント修正・編集 -->
-      <div id="admin-panel-edit" style="display:none;">
-        <h4 style="margin-bottom:10px; color:var(--accent-gold);">既存コンテンツの編集</h4>
-        <div class="form-group">
-          <label>編集するコンテンツを選択</label>
-          <select id="edit-select-item" onchange="loadItemToEdit()"></select>
-        </div>
-        <div class="form-group">
-          <label>タイトル</label>
-          <input type="text" id="edit-title">
-        </div>
-        <div class="form-group">
-          <label>開催日 / 受付状況</label>
-          <input type="text" id="edit-date">
-        </div>
-        <div class="form-group">
-          <label>必要ポイント</label>
-          <input type="number" id="edit-points">
-        </div>
-        <div class="form-group">
-          <label>画像URL</label>
-          <input type="text" id="edit-img">
-        </div>
-        <div class="form-group">
-          <label>詳細説明</label>
-          <textarea id="edit-desc" rows="3"></textarea>
-        </div>
-        <button class="btn btn-primary" style="width:100%;" onclick="saveEditedItem()">変更内容を保存する</button>
-      </div>
-
-      <!-- タブ3: 新規追加 -->
       <div id="admin-panel-add-exp" style="display:none;">
         <h4 style="margin-bottom:10px; color:var(--accent-gold);">新規コンテンツ / グッズの追加</h4>
         <div class="form-group">
@@ -380,8 +347,8 @@
           </select>
         </div>
         <div class="form-group">
-          <label>画像URL</label>
-          <input type="text" id="new-img" placeholder="https://...">
+          <label>画像ファイルをアップロード</label>
+          <input type="file" id="new-img-file" accept="image/*">
         </div>
         <div class="form-group">
           <label>詳細説明</label>
@@ -390,7 +357,6 @@
         <button class="btn btn-primary" style="width:100%;" onclick="addNewItem()">新規保存・追加</button>
       </div>
 
-      <!-- タブ4: ショー追加 -->
       <div id="admin-panel-add-show" style="display:none;">
         <h4 style="margin-bottom:10px; color:var(--accent-gold);">新規ショースケジュールの追加</h4>
         <div class="form-group">
@@ -418,9 +384,10 @@
   <script>
     let currentCategory = 'all';
     let searchQuery = '';
+    let currentEditingId = null;
 
     let userState = {
-      name: "マジック太郎",
+      name: "GIFT太郎",
       email: "user@example.com",
       points: 3900,
       history: [
@@ -428,15 +395,13 @@
       ]
     };
 
-    // 参加者・申込管理リスト
     let participantList = [
-      { date: "2026/10/02", name: "マジック太郎", item: "ミニキューブアート作り体験（リアル）", points: 3900 },
+      { date: "2026/10/02", name: "GIFT太郎", item: "ミニキューブアート作り体験（リアル）", points: 3900 },
       { date: "2026/10/05", name: "山田花子 様", item: "TEAM GIFTER Tシャツ (Mサイズ)", points: 6000 }
     ];
 
-    // 体験コンテンツデータ
     let experiences = [
-      { id: 101, category: "cube", locationType: "online", date: "2026-10-15", title: "ルービックキューブ 6面完成オンラインWS", desc: "Zoomを使って画面越しに手順を丁寧にレクチャー！6面揃える達成感を自宅で楽しむオンライン講座です。", points: 2000, img: "https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=600&q=80" },
+      { id: 101, category: "cube", locationType: "online", date: "2026-10-15", title: "ルービックキューブ 6面完成オンラインWS", desc: "Zoomを使って画面越しに手順を丁寧にレクチャー！6面揃える達成感を自宅で楽しむオンライン講座です。", points: 2000, img: "https://images.unsplash.com/photo-1591994843349-f415893b3a6b?auto=format&fit=crop&w=600&q=80" },
       { id: 102, category: "cube", locationType: "real", date: "2026-10-22", title: "ミニキューブアート作り体験（リアル）", desc: "ミニルービックキューブを並べて自分だけのドット絵アート作品を作る対面リアルワークショップです！", points: 3900, img: "1000000931.jpg" },
       { id: 103, category: "event", locationType: "real", date: "2026-10-18", title: "マー君とお出かけ＆交流清掃（対面）", desc: "マー君と一緒に清掃活動等へ参加し、多種多様な人々と交流するお出かけ企画（定員15名）。", points: 3900, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500" },
       { id: 104, category: "event", locationType: "real", date: "2026-10-25", title: "メグちゃんの手料理 交流ご飯会（対面）", desc: "メグちゃん特製の手料理を囲み、アットホームな雰囲気で語り合う限定リアルご飯会（定員8名）。", points: 3900, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500" },
@@ -463,7 +428,6 @@
       renderGoods();
       renderHistory();
       renderParticipantList();
-      populateEditSelectOptions();
     }
 
     function simulatedLogin() {
@@ -484,7 +448,6 @@
     function renderExperiences() {
       const grid = document.getElementById('contents-grid');
       grid.innerHTML = '';
-
       let filtered = experiences.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
       filtered = filtered.filter(item => {
         const matchCat = (currentCategory === 'all' || item.category === currentCategory);
@@ -500,7 +463,7 @@
       filtered.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.onclick = () => openDetailModal(item, 'exp');
+        card.onclick = () => openDetailModal(item.id);
         card.innerHTML = `
           <div class="card-img" style="background-image: url('${item.img}')">
             ${getTypeBadgeHtml(item.locationType)}
@@ -542,7 +505,7 @@
       goodsItems.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.onclick = () => openDetailModal(item, 'goods');
+        card.onclick = () => openDetailModal(item.id);
         card.innerHTML = `
           <div class="card-img" style="background-image: url('${item.img}')"></div>
           <div class="card-body">
@@ -558,8 +521,15 @@
       });
     }
 
-    function openDetailModal(item, type) {
+    /* ポップアップ詳細＆ポップアップ内からの直接編集機能（画像アップロード対応） */
+    function openDetailModal(id) {
+      currentEditingId = id;
+      const item = [...experiences, ...goodsItems].find(c => c.id === id);
+      if (!item) return;
+
+      document.getElementById('modal-mode-label').innerText = "詳細情報";
       const body = document.getElementById('modal-detail-body');
+      
       let optionHtml = '';
       if (item.hasSize) {
         optionHtml = `
@@ -576,6 +546,9 @@
       }
 
       body.innerHTML = `
+        <div style="text-align: right; margin-bottom: 10px;">
+          <button class="config-btn admin" onclick="switchToEditMode(${item.id})">✏️ この内容を編集する</button>
+        </div>
         <div class="modal-img" style="background-image: url('${item.img}')">
           ${getTypeBadgeHtml(item.locationType)}
         </div>
@@ -592,6 +565,66 @@
       document.getElementById('detail-modal').style.display = 'flex';
     }
 
+    function switchToEditMode(id) {
+      const item = [...experiences, ...goodsItems].find(c => c.id === id);
+      if (!item) return;
+
+      document.getElementById('modal-mode-label').innerText = "イベント情報の編集";
+      const body = document.getElementById('modal-detail-body');
+      body.innerHTML = `
+        <div class="form-group">
+          <label>タイトル</label>
+          <input type="text" id="pop-edit-title" value="${item.title}">
+        </div>
+        <div class="form-group">
+          <label>開催日 / 受付</label>
+          <input type="text" id="pop-edit-date" value="${item.date || ''}">
+        </div>
+        <div class="form-group">
+          <label>必要ポイント</label>
+          <input type="number" id="pop-edit-points" value="${item.points}">
+        </div>
+        <div class="form-group">
+          <label>画像を新しくアップロード (端末から選択)</label>
+          <input type="file" id="pop-edit-file" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label>詳細説明</label>
+          <textarea id="pop-edit-desc" rows="4">${item.desc}</textarea>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button class="btn btn-secondary" style="flex:1;" onclick="openDetailModal(${item.id})">キャンセル</button>
+          <button class="btn btn-primary" style="flex:1;" onclick="savePopupEdit(${item.id})">変更を保存する</button>
+        </div>
+      `;
+    }
+
+    function savePopupEdit(id) {
+      const item = [...experiences, ...goodsItems].find(c => c.id === id);
+      if (!item) return;
+
+      item.title = document.getElementById('pop-edit-title').value;
+      item.date = document.getElementById('pop-edit-date').value;
+      item.points = parseInt(document.getElementById('pop-edit-points').value);
+      item.desc = document.getElementById('pop-edit-desc').value;
+
+      const fileInput = document.getElementById('pop-edit-file');
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          item.img = e.target.result; // 読み込んだ画像をBase64形式で即時反映
+          alert("コンテンツ情報と画像を更新しました！");
+          openDetailModal(id);
+          renderUI();
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        alert("コンテンツ情報を更新しました！");
+        openDetailModal(id);
+        renderUI();
+      }
+    }
+
     function closeDetailModal() { document.getElementById('detail-modal').style.display = 'none'; }
     function openHistoryModal() { document.getElementById('history-modal').style.display = 'flex'; }
     function closeHistoryModal() { document.getElementById('history-modal').style.display = 'none'; }
@@ -602,7 +635,6 @@
       document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('admin-panel-participants').style.display = (tabName === 'participants') ? 'block' : 'none';
-      document.getElementById('admin-panel-edit').style.display = (tabName === 'edit') ? 'block' : 'none';
       document.getElementById('admin-panel-add-exp').style.display = (tabName === 'add-exp') ? 'block' : 'none';
       document.getElementById('admin-panel-add-show').style.display = (tabName === 'add-show') ? 'block' : 'none';
     }
@@ -615,43 +647,6 @@
         tr.innerHTML = `<td>${p.date}</td><td>${p.name}</td><td>${p.item}</td><td>${p.points.toLocaleString()} pt</td>`;
         tbody.appendChild(tr);
       });
-    }
-
-    function populateEditSelectOptions() {
-      const select = document.getElementById('edit-select-item');
-      select.innerHTML = '<option value="">-- 編集対象を選択してください --</option>';
-      [...experiences, ...goodsItems].forEach(item => {
-        const opt = document.createElement('option');
-        opt.value = item.id;
-        opt.innerText = item.title;
-        select.appendChild(opt);
-      });
-    }
-
-    function loadItemToEdit() {
-      const id = parseInt(document.getElementById('edit-select-item').value);
-      const item = [...experiences, ...goodsItems].find(x => x.id === id);
-      if (!item) return;
-      document.getElementById('edit-title').value = item.title;
-      document.getElementById('edit-date').value = item.date;
-      document.getElementById('edit-points').value = item.points;
-      document.getElementById('edit-img').value = item.img;
-      document.getElementById('edit-desc').value = item.desc;
-    }
-
-    function saveEditedItem() {
-      const id = parseInt(document.getElementById('edit-select-item').value);
-      const item = [...experiences, ...goodsItems].find(x => x.id === id);
-      if (!item) { alert("対象を選択してください。"); return; }
-
-      item.title = document.getElementById('edit-title').value;
-      item.date = document.getElementById('edit-date').value;
-      item.points = parseInt(document.getElementById('edit-points').value);
-      item.img = document.getElementById('edit-img').value;
-      item.desc = document.getElementById('edit-desc').value;
-
-      alert("コンテンツ情報を更新しました！");
-      renderUI();
     }
 
     function openTicketNotice(region) {
@@ -703,7 +698,6 @@
           amount: -cost
         });
 
-        // 参加者リストに追加
         participantList.unshift({
           date: new Date().toLocaleDateString('ja-JP'),
           name: userState.name,
@@ -761,35 +755,47 @@
       const date = document.getElementById('new-date').value;
       const points = parseInt(document.getElementById('new-points').value);
       const hasSize = (document.getElementById('new-has-size').value === 'yes');
-      const img = document.getElementById('new-img').value;
       const desc = document.getElementById('new-desc').value;
+      const fileInput = document.getElementById('new-img-file');
 
       if (!title || isNaN(points)) {
         alert("タイトルとポイント数は必須です。");
         return;
       }
 
-      const itemObj = {
-        id: Date.now(),
-        category,
-        locationType,
-        date: date || "常時受付",
-        title,
-        desc: desc || "詳細情報は準備中です。",
-        points,
-        hasSize,
-        img: img || "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80"
+      const createItemObj = (imgUrl) => {
+        const itemObj = {
+          id: Date.now(),
+          category,
+          locationType,
+          date: date || "常時受付",
+          title,
+          desc: desc || "詳細情報は準備中です。",
+          points,
+          hasSize,
+          img: imgUrl || "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80"
+        };
+
+        if (category === 'goods' || category === 'ticket') {
+          goodsItems.unshift(itemObj);
+        } else {
+          experiences.unshift(itemObj);
+        }
+
+        alert("アイテムを追加しました！");
+        closeAdminModal();
+        renderUI();
       };
 
-      if (category === 'goods' || category === 'ticket') {
-        goodsItems.unshift(itemObj);
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          createItemObj(e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
       } else {
-        experiences.unshift(itemObj);
+        createItemObj(null);
       }
-
-      alert("アイテムを追加しました！");
-      closeAdminModal();
-      renderUI();
     }
 
     renderUI();
